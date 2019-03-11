@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
   width: 90%;
@@ -8,4 +9,18 @@
   display: flex;
   flex-wrap: wrap;
   margin: auto;
+}
+
+.searchBar{
+  position: relative;
+  left: 416px;
+}
+
+.signUpBtn{
+  margin-right: 25px;
+}
+
+.rightNav{
+  display: flex;
+  align-items: center;
 }
