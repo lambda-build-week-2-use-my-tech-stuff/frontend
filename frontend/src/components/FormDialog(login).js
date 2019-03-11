@@ -22,7 +22,7 @@ export default class FormDialog extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='signUpBtn'>
         <Button variant="outlined" color="inherit" onClick={this.handleClickOpen}>
           Sign Up
         </Button>
