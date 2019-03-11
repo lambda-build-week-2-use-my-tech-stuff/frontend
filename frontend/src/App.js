@@ -9,9 +9,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" />
-          <Route path={`/catalog/postpage:id`} />
-          <Route path={`/profilepage/:id`} />
         </div>
       </Router>
     );
