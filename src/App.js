@@ -13,7 +13,7 @@ class App extends Component {
         <div className="App">
           <PrimarySearchAppBar/>
           <Route exact path="/" component={CatalogGrid} />
-          <Route path="/postpage/:id"/>
+          <Route path="/postpages/:id" component={PostPage}/>
           <Route path="/profile-page/:id" />
         </div>
       </Router>

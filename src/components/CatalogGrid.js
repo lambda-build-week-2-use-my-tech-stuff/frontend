@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -60,20 +61,23 @@ function AdvancedGridList(props) {
     <div className={classes.root}>
       <GridList cellHeight={300} spacing={1} className={classes.gridList}>
         {tileData.map(tile => (
-          <GridListTile key={tile.image} cols={.5} rows={1}>
-            <img src={tile.image} alt={tile.item_name} />
-            <GridListTileBar
-              title={tile.item_name}
-              titlePosition="top"
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  <StarBorderIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-              className={classes.titleBar}
-            />
-          </GridListTile>
+
+            <GridListTile key={tile.image} cols={.5} rows={1}>
+              <img src={tile.image} alt={tile.item_name} />
+              <Link to={`/postpages/${tile.id}`}>
+                <GridListTileBar
+                  title={tile.item_name}
+                  titlePosition="top"
+                  actionIcon={
+                    <IconButton className={classes.icon}>
+                      <StarBorderIcon />
+                    </IconButton>
+                  }
+                  actionPosition="left"
+                  className={classes.titleBar}
+                />
+              </Link>
+            </GridListTile>
         ))}
       </GridList>
     </div>
