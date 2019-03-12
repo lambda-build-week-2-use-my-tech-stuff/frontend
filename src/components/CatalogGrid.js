@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getPosts } from '../actions';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -31,8 +33,6 @@ const styles = theme => ({
   },
 });
 
-
-
 const tileData = [{"id":1,"item_name":"Gecko, barking","description":"Reposition Left Internal Mammary Artery, Perc Endo Approach","price":"311","image":"http://dummyimage.com/606x581.png/cc0000/ffffff"},
 {"id":2,"item_name":"Grenadier, purple","description":"Replacement of R Axilla Vein with Nonaut Sub, Open Approach","price":"859","image":"http://dummyimage.com/847x346.bmp/5fa2dd/ffffff"},
 {"id":3,"item_name":"Southern ground hornbill","description":"Replacement of R Int Mamm Art with Nonaut Sub, Open Approach","price":"918","image":"http://dummyimage.com/993x336.bmp/5fa2dd/ffffff"},
@@ -54,37 +54,53 @@ const tileData = [{"id":1,"item_name":"Gecko, barking","description":"Reposition
 {"id":19,"item_name":"Loris, slender","description":"Drainage of Left Upper Eyelid, Percutaneous Approach","price":"502","image":"http://dummyimage.com/601x242.jpg/dddddd/000000"},
 {"id":20,"item_name":"Giant girdled lizard","description":"Resection of Sigmoid Colon, Percutaneous Endoscopic Approach","price":"489","image":"http://dummyimage.com/962x578.bmp/dddddd/000000"}];
 
-function AdvancedGridList(props) {
-  const { classes } = props;
+class AdvancedGridList extends Component {
 
-  return (
-    <div className={classes.root}>
-      <GridList cellHeight={300} spacing={1} className={classes.gridList}>
-      {tileData.map(tile => (
-        <GridListTile key={tile.image} cols={.5} rows={1}>
-          <img src={tile.image} alt={tile.item_name} />
-          <Link to={`/postpages/${tile.id}`}>
-            <GridListTileBar
-              title={tile.item_name}
-              titlePosition="top"
-              actionIcon={
-                <IconButton className={classes.icon}>
-                <StarBorderIcon />
-                </IconButton>
-              }
-              actionPosition="left"
-              className={classes.titleBar}
-            />
-          </Link>
-        </GridListTile>
-        ))}
-      </GridList>
-    </div>
-  );
+  componentDidMount() {
+    this.props.getPosts();
+    console.log(this.props)
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <GridList cellHeight={300} spacing={1} className={classes.gridList}>
+        {this.props.posts.map(post => (
+          <GridListTile key={post.id} cols={.5} rows={1}>
+            <img src={post.image} alt={post.item_name} />
+            <Link to={`/postpages/${post.id}`}>
+              <GridListTileBar
+                title={post.postTitle}
+                titlePosition="top"
+                actionIcon={
+                  <IconButton className={classes.icon}>
+                  <StarBorderIcon />
+                  </IconButton>
+                }
+                actionPosition="left"
+                className={classes.titleBar}
+              />
+            </Link>
+          </GridListTile>
+          ))}
+        </GridList>
+      </div>
+    );
+  }
 }
+
+const styledComponent = withStyles(styles)(AdvancedGridList);
+
+const mapStateToProps = state => ({
+  posts: state.posts,
+  fetchingPosts: state.fetchingPosts,
+  error: state.error
+})
 
 AdvancedGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AdvancedGridList);
+export default connect(mapStateToProps, { getPosts })(styledComponent)

@@ -37,10 +37,9 @@ class PostPage extends Component {
   componentDidMount() {
     const post = tileData.find(post => post.id === Number(this.props.match.params.id))
     this.setState({ post: {
-      name: post.item_name,
-      price: post.price,
-      description: post.description,
-      image: post.image
+      name: post.postTitle,
+      price: post.zip,
+      description: post.description
     } })
   }
 
@@ -53,7 +52,7 @@ class PostPage extends Component {
           <h4>Placeholder Location, Location, 11292</h4>
         </header>
         <article className="postpage-content">
-          <img src={this.state.post.image} alt={this.state.post.name} />
+          <img src={this.state.post.name} alt={this.state.post.name} />
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
       </div>
