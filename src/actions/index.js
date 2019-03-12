@@ -67,3 +67,18 @@ export const editPost = post => dispatch => {
     dispatch({ type: EDIT_POST_FAILURE, payload: err.message})
   })
 }
+
+export const EDIT_PROFILE = 'EDIT_PROFILE';
+export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
+export const EDIT_PROFILE_FAILURE = 'EDIT_PROFILE_FAILURE';
+
+export const editProfile = profile => dispatch => {
+    dispatch({ type: EDIT_PROFILE })
+    axios.put(``, profile)
+    .then(res => {
+    dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        dispatch({ type: EDIT_PROFILE_FAILURE, payload: err.message })
+    })
+}
