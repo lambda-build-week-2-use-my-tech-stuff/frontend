@@ -23,11 +23,12 @@ export default class Login extends Component {
     return (
       <div className='login'>
         <form className='loginForm'>
+            <h2 className='logo'>mystuff</h2>
             <input className='loginInput' type='text' placeholder='Username' onChange={this.changeUserNameHandler} required />
             <input className='loginInput' type='password' placeholder='Password' onChange={this.changePasswordHandler} required />
             <button className='loginBtn' onClick={this.submitDataHandler}>Log In</button>
             <br/>
-            <a href='#'>Sign Up</a>
+            <a href='#' className='signUP'>Sign Up</a>
         </form>
     </div>
     )
