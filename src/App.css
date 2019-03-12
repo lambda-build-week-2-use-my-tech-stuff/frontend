@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
   width: 90%;
@@ -9,3 +10,69 @@
   flex-wrap: wrap;
   margin: auto;
 }
+
+.searchBar{
+  position: relative;
+  left: 416px;
+}
+
+.signUpBtn{
+  margin-right: 25px;
+}
+
+.rightNav{
+  display: flex;
+  align-items: center;
+}
+
+.profilePage{
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  max-width: 450px;
+  margin: auto;
+  border-radius: 8px;
+  margin-bottom: 5%;
+  }
+
+  .inputField{
+    text-align: center;
+    margin: 1% 0;
+    border-radius: 8px;
+    height: 35px;
+  }
+  
+  .profileContainer{
+    margin: 2%;
+  }
+
+  .profileContainer h2{
+    margin-bottom: 1%;
+  }
+
+  .updateBtn{
+    text-align: center;
+    border-radius: 8px;
+    height: 30px;
+    width: 125px;
+    align-self: center;
+    margin-top: 3%;
+  }
+
+  .profilePosts{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .userNameTitle{
+    text-decoration: underline;
+  }
+
+  .profilePageHeader{
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 450px;
+    margin: auto;
+  }

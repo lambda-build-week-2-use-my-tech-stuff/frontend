@@ -54,7 +54,7 @@ table {
 html,
 body {
   height: 100%;
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
   /* 10px if the browser was 16px*/
   /* 1rem === 10px @ medium browser settings */
   font-family: sans-serif;
