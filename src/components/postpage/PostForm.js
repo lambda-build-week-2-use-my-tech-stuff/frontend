@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './PostForm.css';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -35,7 +34,9 @@ class PostForm extends Component {
       state: '',
       zip: '',
       price: '',
-      description: ''
+      description: '',
+      category: '',
+      image: ''
     }
   }
 
@@ -158,7 +159,7 @@ class PostForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained" color="primary" className={classes.button}>Add Post</Button>
+          <Button variant="contained" color="primary" className={classes.button} onClick={e => this.addPost(e, this.state.post)}>Add Post</Button>
         </form>
       </div>
     );

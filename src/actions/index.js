@@ -23,10 +23,10 @@ export const ADD_POST_FAILURE = "ADD_POST_FAILURE";
 
 export const addPost = post => dispatch => {
   dispatch({ type: ADD_POST })
-  axios.post('', post)
+  axios.post('https://my-tech-stuff-backend.herokuapp.com/api/post', post)
   .then(res => {
     console.log(res);
-    dispatch({ type: ADD_POST_SUCCESS, payload: res.data })
+    dispatch({ type: ADD_POST_SUCCESS, payload: res.data.data })
   })
   .catch(err => {
     console.log(err);

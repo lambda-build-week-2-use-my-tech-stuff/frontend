@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE } from '../actions';
+import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE, ADD_POST, ADD_POST_SUCCESS, ADD_POST_FAILURE } from '../actions';
 
 const initialState = {
   posts: [],
@@ -27,6 +27,23 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       fetchingPosts: false,
+      error: action.payload
+    }
+    case ADD_POST:
+    return {
+      ...state,
+      addingPost: true,
+      error: null
+    }
+    case ADD_POST_SUCCESS:
+    return {
+      ...state,
+      addingPost: false
+    }
+    case ADD_POST_FAILURE:
+    return {
+      ...state,
+      addingPost: false,
       error: action.payload
     }
     default:
