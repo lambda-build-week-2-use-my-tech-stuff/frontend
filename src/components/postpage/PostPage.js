@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
+import './PostPage.css';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions';
-import './PostPage.css';
+import { Link } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+const styles = theme => ({
+  fab: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+});
 
 class PostPage extends Component {
   state = {
@@ -32,10 +47,22 @@ class PostPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="postpage-container">
         <header className="postpage-header">
-          <h2>{this.state.post.name}</h2>
+          <div>
+            <h2>{this.state.post.name}</h2>
+            <Fab color="primary" aria-label="Add" size="large" className={classes.fab} component={Link} to="/postform">
+              <AddIcon />
+            </Fab>
+            <Fab color="secondary" aria-label="Edit" className={classes.fab} component={Link} to="/">
+              <EditIcon></EditIcon>
+            </Fab>
+            <Fab aria-label="Delete" className={classes.fab}>
+              <DeleteIcon />
+            </Fab>
+          </div>
           <h3>${this.state.post.price}</h3>
           <h4>{this.state.post.location}</h4>
         </header>
@@ -54,4 +81,5 @@ const mapStateToProps = state => ({
   error: state.error
 })
 
-export default connect(mapStateToProps, { getPosts })(PostPage)
+const PostPageStyles = withStyles(styles)(PostPage);
+export default connect(mapStateToProps, { getPosts })(PostPageStyles);

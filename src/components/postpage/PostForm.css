@@ -1,0 +1,11 @@
+.PostForm form, .EditForm form {
+  width: 400px;
+  height: 400px;
+  margin: 30px auto;
+  border: 2px solid black;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: center;
+}

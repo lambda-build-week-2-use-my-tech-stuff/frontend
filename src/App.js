@@ -6,6 +6,7 @@ import PrimarySearchAppBar from './components/PrimarySearchAppBar'
 import Catalog from './components/Catalog';
 import CatalogGrid from './components/CatalogGrid';
 import ProfilePage from './components/ProfilePage';
+import PostForm from './components/postpage/PostForm';
 
 class App extends Component {
   render() {
@@ -14,8 +15,9 @@ class App extends Component {
         <div className="App">
           <PrimarySearchAppBar/>
           <Route exact path="/" component={CatalogGrid} />
-          <Route path="/postpages/:id" component={PostPage}/>
-          <Route path="/profile-page/:id" component={ProfilePage}/>
+          <Route path="/postpages/:id" component={PostPage} />
+          <Route path="/profile-page/:id" component={ProfilePage} />
+          <Route path="/postform" component={PostForm} />
         </div>
       </Router>
     );
