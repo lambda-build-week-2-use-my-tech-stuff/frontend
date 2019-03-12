@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { addPost } from '../../actions';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   container: {
@@ -22,14 +22,20 @@ const styles = theme => ({
   menu: {
     width: 200,
   },
+   button: {
+    margin: theme.spacing.unit,
+  },
 });
 
 class PostForm extends Component {
   state = {
     post: {
       postTitle: '',
-      age: '',
-      height: ''
+      city: '',
+      state: '',
+      zip: '',
+      price: '',
+      description: ''
     }
   }
 
@@ -60,12 +66,48 @@ class PostForm extends Component {
           id="filled-title-input"
           label="Title"
           className={classes.textField}
-          type="title"
+          type="text"
           margin="normal"
           variant="filled"
           onChange={this.handleInputChange}
           value={this.state.post.postTitle}
           name="postTitle"
+          required
+          />
+          <TextField
+          id="filled-city-input"
+          label="City"
+          className={classes.textField}
+          type="text"
+          margin="normal"
+          variant="filled"
+          onChange={this.handleInputChange}
+          value={this.state.post.city}
+          name="city"
+          required
+          />
+          <TextField
+          id="filled-state-input"
+          label="State"
+          className={classes.textField}
+          type="text"
+          margin="normal"
+          variant="filled"
+          onChange={this.handleInputChange}
+          value={this.state.post.state}
+          name="state"
+          required
+          />
+          <TextField
+          id="filled-zip-input"
+          label="ZIP"
+          className={classes.textField}
+          type="number"
+          margin="normal"
+          variant="filled"
+          onChange={this.handleInputChange}
+          value={this.state.post.zip}
+          name="zip"
           required
           />
           <TextField
@@ -81,20 +123,42 @@ class PostForm extends Component {
           required
           />
           <TextField
+          id="filled-description-input"
+          label="Description"
+          className={classes.textField}
+          type="text"
+          margin="normal"
+          variant="filled"
+          onChange={this.handleInputChange}
+          value={this.state.post.description}
+          name="description"
+          required
+          />
+          <TextField
+          id="filled-category-input"
+          label="Category"
+          className={classes.textField}
+          type="text"
+          margin="normal"
+          variant="filled"
+          onChange={this.handleInputChange}
+          value={this.state.post.category}
+          name="category"
+          required
+          />
+          <TextField
           id="filled-image-input"
           label="Image URL"
           className={classes.textField}
-          type="image"
+          type="text"
           margin="normal"
           variant="filled"
-          type="text"
           onChange={this.handleInputChange}
-          placeholder="Image"
           value={this.state.post.image}
           name="image"
           required
           />
-          <button type="submit">Add Post</button>
+          <Button variant="contained" color="primary" className={classes.button}>Add Post</Button>
         </form>
       </div>
     );
