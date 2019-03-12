@@ -5,8 +5,6 @@ import PostPage from './components/postpage/PostPage';
 import PrimarySearchAppBar from './components/PrimarySearchAppBar'
 import Catalog from './components/Catalog';
 import CatalogGrid from './components/CatalogGrid';
-import PrimarySearchAppBar from './components/PrimarySearchAppBar'
-import Catalog from './components/Catalog';
 import ProfilePage from './components/ProfilePage';
 
 class App extends Component {
