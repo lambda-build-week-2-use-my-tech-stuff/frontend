@@ -11,8 +11,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <PrimarySearchAppBar/>
-        <Catalog /> */}
+        <PrimarySearchAppBar/>
+        <Catalog />
         <ProfilePage />
       </div>
     );
