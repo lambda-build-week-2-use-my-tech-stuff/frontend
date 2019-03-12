@@ -6,10 +6,10 @@ export const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
 
 export const getPosts = () => dispatch => {
   dispatch({ type: GET_POSTS})
-  axios.get('')
+  axios.get('https://my-tech-stuff-backend.herokuapp.com/api/post')
   .then(res => {
     console.log(res);
-    dispatch({ type: GET_POSTS_SUCCESS, payload: res.data })
+    dispatch({ type: GET_POSTS_SUCCESS, payload: res.data.data })
   })
   .catch(err => {
     console.log(err)
