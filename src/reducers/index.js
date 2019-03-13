@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
     case GET_POSTS_SUCCESS:
     return {
       ...state,
-      posts: action.payload,
+      posts: [...action.payload],
       fetchingPosts: false
     }
     case GET_POSTS_FAILURE:
@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
     case GET_POST_SUCCESS:
     return {
       ...state,
-      post: action.payload,
+      post: {...action.payload},
       fetchingPost: false
     }
     case GET_POST_FAILURE:
@@ -58,7 +58,8 @@ const reducer = (state = initialState, action) => {
     case ADD_POST_SUCCESS:
     return {
       ...state,
-      addingPost: false
+      addingPost: false,
+      posts: [...state.posts, action.payload]
     }
     case ADD_POST_FAILURE:
     return {
@@ -76,12 +77,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       deletingPost: false,
-      post: null,
-      posts: state.posts.map(post => {
-        if (post !== action.payload) {
-          return post
-        }
-      })
+      post: null
     }
     case DELETE_POST_FAILURE:
     return {
@@ -99,7 +95,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       editingPost: false,
-      post: action.payload
+      post: {...action.payload}
     }
     case EDIT_POST_FAILURE:
     return {
