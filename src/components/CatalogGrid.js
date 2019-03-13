@@ -9,6 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import PrimarySearchAppBar from './PrimarySearchAppBar';
 
 const styles = theme => ({
   root: {
@@ -34,7 +35,7 @@ const styles = theme => ({
 });
 
 class AdvancedGridList extends Component {
-
+   
   componentDidMount() {
     this.props.getPosts();
     console.log(this.props)
@@ -44,6 +45,7 @@ class AdvancedGridList extends Component {
     const { classes } = this.props;
 
     return (
+      <>
       <div className={classes.root}>
         <GridList cellHeight={300} spacing={1} className={classes.gridList}>
         {this.props.posts.map(post => (
@@ -66,6 +68,7 @@ class AdvancedGridList extends Component {
           ))}
         </GridList>
       </div>
+      </>
     );
   }
 }

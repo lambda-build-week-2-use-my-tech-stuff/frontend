@@ -7,6 +7,7 @@ import CatalogGrid from './components/CatalogGrid';
 import ProfilePage from './components/ProfilePage';
 import authenticate from './authentication/authenticate';
 
+
 class App extends Component {
   render() {
     return (
