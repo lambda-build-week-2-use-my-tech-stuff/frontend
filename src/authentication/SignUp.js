@@ -1,23 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class SignUp extends Component {
-    constructor() {
-        super();
-        this.state = {
-            username: '',
-            password: '',
-            dob: '',
-            location: ''
-        }
-    }
+    state = {
+        username: '',
+        password: '',
+        dob: '',
+        location: ''
+      }
 
     changeHandler = e => this.setState({ [e.target.name]: e.target.value });
     submitDataHandler = e => {
         const username = this.state.username;
         const password = this.state.password;
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
+        const userInfo = {
+          "email": this.state.username,
+          "password": this.state.password
+        }
+        axios.post('https://my-tech-stuff-backend.herokuapp.com/signup', userInfo)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        })
     }
   render() {
     return (

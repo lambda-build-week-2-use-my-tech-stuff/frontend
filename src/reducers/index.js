@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
     case GET_POSTS_SUCCESS:
     return {
       ...state,
-      posts: [...action.payload],
+      posts: action.payload,
       fetchingPosts: false
     }
     case GET_POSTS_FAILURE:
@@ -102,6 +102,11 @@ const reducer = (state = initialState, action) => {
       ...state,
       editingPost: false,
       error: action.payload
+    }
+    case SEARCH:
+    return {
+      ...state,
+      posts: state.posts.filter(post => post.includes(action.payload))
     }
     default:
       return state;

@@ -100,7 +100,7 @@ class PrimarySearchAppBar extends React.Component {
     mobileMoreAnchorEl: null,
     searched: ''
   };
-  
+
   componentDidMount() {
     this.setState({ catalogCards: this.props.allPosts})
     console.log(this.state.catalogCards)
@@ -122,7 +122,7 @@ class PrimarySearchAppBar extends React.Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
-  
+
   searchHandler = e => {
     this.setState({ searched: e.target.value })
   }
@@ -249,4 +249,3 @@ PrimarySearchAppBar.propTypes = {
 };
 
 export default connect(mapDispatchToProps, { searchBar })(styledSearchBar);
-

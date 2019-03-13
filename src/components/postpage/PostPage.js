@@ -33,6 +33,7 @@ class PostPage extends Component {
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
       this.props.getPost(this.props.match.params.id);
+      console.log(this.props.getPost)
     }
     else {
       this.setState({ post: {

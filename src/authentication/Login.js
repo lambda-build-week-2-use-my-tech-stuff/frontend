@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './login.css';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp';
 
@@ -20,6 +21,17 @@ export default class Login extends Component {
         const password = this.state.password;
         localStorage.setItem('username', username);
         localStorage.setItem('password', password);
+        const userInfo = {
+          "email": this.state.username,
+          "password": this.state.password
+        }
+        axios.post('https://my-tech-stuff-backend.herokuapp.com/signup', userInfo)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        })
         this.props.history.push('/');
     }
     toggler = e => {
@@ -39,7 +51,7 @@ export default class Login extends Component {
             <p className='signUP' onClick={this.toggler} >Sign Up</p>
         </form>
     </div> : <SignUp toggler={this.toggler} /> }
-      
+
   </>
     )
   }
