@@ -21,7 +21,7 @@ import FormDialog from './FormDialog(login)';
 import { searchBar } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from '../../../../../AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux';
+import { bindActionCreators } from 'redux';
 
 
 const styles = theme => ({
