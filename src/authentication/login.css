@@ -59,4 +59,9 @@
 .signUP:hover{
     color:#ffa500;
     border-color: white;
+    cursor: pointer;
+}
+
+p{
+    color: white;
 }

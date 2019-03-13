@@ -49,13 +49,13 @@ class AdvancedGridList extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, posts } = this.props;
 
     return (
       <>
       <div className={classes.root}>
         <GridList cellHeight={300} spacing={1} className={classes.gridList}>
-        {this.props.posts.map(post => (
+        {posts.map(post => (
           <GridListTile key={post._id} cols={.5} rows={1}>
             <img src={post.image} alt={post.item_name} />
             <Link to={`/postpages/${post._id}`}>
