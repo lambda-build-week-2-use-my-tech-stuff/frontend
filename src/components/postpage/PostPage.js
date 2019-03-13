@@ -32,7 +32,16 @@ class PostPage extends Component {
 
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
-      this.props.getPost(this.props.match.params.id);  
+      this.props.getPost(this.props.match.params.id);
+    }
+    else {
+      this.setState({ post: {
+        name: this.props.post.postTitle,
+        price: 1121,
+        category: this.props.post.category,
+        description: this.props.post.description,
+        location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`
+      }})
     }
   }
 

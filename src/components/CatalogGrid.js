@@ -35,9 +35,11 @@ const styles = theme => ({
 });
 
 class AdvancedGridList extends Component {
-   
+
   componentDidMount() {
-    this.props.getPosts();
+    if (this.props.posts.length === 0) {
+      this.props.getPosts();  
+    }
   }
 
   render() {
