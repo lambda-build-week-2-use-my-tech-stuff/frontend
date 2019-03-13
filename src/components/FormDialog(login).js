@@ -22,6 +22,7 @@ export default class FormDialog extends React.Component {
 
   logOut = () => {
     localStorage.removeItem('jwt');
+    window.location.reload()
   }
 
   render() {
