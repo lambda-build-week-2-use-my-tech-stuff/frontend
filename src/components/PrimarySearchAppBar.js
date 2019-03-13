@@ -200,7 +200,7 @@ class PrimarySearchAppBar extends React.Component {
                   <SearchIcon />
                 </div>
                 <InputBase
-                  onSubmit={e => this.searchSubmit(this.state.searched)}
+                  onSubmit={e => this.searchSubmit(e, this.state.searched)}
                   value={this.state.searched}
                   placeholder="Search…"
                   onChange={this.searchHandler}

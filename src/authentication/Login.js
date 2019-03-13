@@ -3,36 +3,39 @@ import './login.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp';
+import { withRouter } from 'react-router-dom';
 
-export default class Login extends Component {
+class Login extends Component {
     constructor() {
         super();
         this.state = {
-            username: '',
-            password: '',
+            username: "",
+            password: "",
             isSignedUp: false,
         }
     }
 
     changeUserNameHandler = e => this.setState({ username: e.target.value });
     changePasswordHandler = e => this.setState({ password: e.target.value });
-    submitDataHandler = () => {
+    submitDataHandler = e => {
+        e.preventDefault();
         const username = this.state.username;
         const password = this.state.password;
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
+        // localStorage.setItem('username', username);
+        // localStorage.setItem('password', password);
         const userInfo = {
           "email": this.state.username,
           "password": this.state.password
         }
-        axios.post('https://my-tech-stuff-backend.herokuapp.com/signup', userInfo)
+        axios.post('https://my-tech-stuff-backend.herokuapp.com/signin', userInfo)
         .then(res => {
           console.log(res);
+          localStorage.setItem('jwt', res.data.token);
+          this.props.history.push('/');
         })
         .catch(err => {
           console.log(err);
         })
-        this.props.history.push('/');
     }
     toggler = e => {
       this.setState({ isSignedUp: !this.state.isSignedUp })
@@ -68,3 +71,4 @@ export default class Login extends Component {
 //             <Link to='/signup' className='signUP'>Sign Up</Link>
 //         </form>
 //     </div>
+export default withRouter(Login);

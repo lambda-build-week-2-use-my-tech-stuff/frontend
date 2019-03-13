@@ -20,12 +20,18 @@ export default class FormDialog extends React.Component {
     this.setState({ open: false });
   };
 
+  logOut = () => {
+    localStorage.removeItem('jwt');
+  }
+
   render() {
     return (
       <div className='signUpBtn'>
-        <Button variant="outlined" color="inherit" onClick={this.handleClickOpen}>
+        {localStorage.getItem('jwt') ? <Button variant="outlined" color="inherit" onClick={this.logOut}>
+          Sign Out
+        </Button> : <Button variant="outlined" color="inherit" onClick={this.handleClickOpen}>
           Sign Up
-        </Button>
+        </Button> }
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
