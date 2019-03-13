@@ -104,3 +104,9 @@ export const editProfile = profile => dispatch => {
         dispatch({ type: EDIT_PROFILE_FAILURE, payload: err.message })
     })
 }
+
+// export const SEARCH = 'SEARCH';
+
+// export const searchBar = post => {
+//   return {type: SEARCH, post}
+// }
