@@ -29,6 +29,7 @@ const reducer = (state = initialState, action) => {
       fetchingPosts: false,
       error: action.payload
     }
+    case SEARCH: 
     default:
       return state;
   }
