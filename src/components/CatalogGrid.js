@@ -37,7 +37,6 @@ class AdvancedGridList extends Component {
 
   componentDidMount() {
     this.props.getPosts();
-    console.log(this.props)
   }
 
   render() {

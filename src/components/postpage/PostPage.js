@@ -79,7 +79,7 @@ class PostPage extends Component {
 
 const mapStateToProps = state => ({
   post: state.post,
-  fetchingPosts: state.fetchingPosts,
+  fetchingPost: state.fetchingPost,
   error: state.error
 })
 
