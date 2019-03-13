@@ -6,6 +6,7 @@ import PrimarySearchAppBar from './components/PrimarySearchAppBar'
 import CatalogGrid from './components/CatalogGrid';
 import ProfilePage from './components/ProfilePage';
 import PostForm from './components/postpage/PostForm';
+import EditForm from './components/postpage/EditForm';
 import authenticate from './authentication/authenticate';
 
 
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/postpages/:id" component={PostPage} />
           <Route path="/profile-page/:id" component={ProfilePage} />
           <Route path="/postform" component={PostForm} />
+          <Route path="/:id/editform" component={EditForm} />
         </div>
       </Router>
     );
