@@ -35,7 +35,7 @@ export default class Login extends Component {
             <input className='loginInput' type='password' placeholder='Password' onChange={this.changePasswordHandler} required />
             <button className='loginBtn'>Log In</button>
             <br/>
-            <p>Dont Have an Account?</p>
+            <p className='p'>Dont Have an Account?</p>
             <p className='signUP' onClick={this.toggler} >Sign Up</p>
         </form>
     </div> : <SignUp toggler={this.toggler} /> }
