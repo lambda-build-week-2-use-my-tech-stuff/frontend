@@ -20,7 +20,7 @@ class App extends Component {
           <Route path="/postpages/:id" component={PostPage} />
           <Route path="/profile-page/:id" component={ProfilePage} />
           <Route path="/postform" component={PostForm} />
-          <Route path="/:id/editform" component={EditForm} />
+          <Route path="/editform" component={EditForm} />
         </div>
       </Router>
     );

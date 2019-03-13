@@ -29,21 +29,22 @@ const styles = theme => ({
 class EditForm extends Component {
   state = {
     post: {
-      postTitle: '',
-      city: '',
-      state: '',
-      zip: '',
-      price: '',
-      description: '',
-      category: '',
-      image: ''
+      postTitle: this.props.post.postTitle,
+      city: this.props.post.city,
+      state: this.props.post.state,
+      zip: this.props.post.zip,
+      price: this.props.post.price,
+      description: this.props.post.description,
+      category: this.props.post.category,
+      image: this.props.post.image,
+      id: this.props.post._id
     }
   }
 
-  addPost = (e, post) => {
+  editPost = (e, post) => {
     e.preventDefault();
-    this.props.addPost(post)
-    this.props.history.push("/")
+    this.props.editPost(post);
+    this.props.history.push(`/postpages/${this.state.post.id}`)
   }
 
   handleInputChange = e => {
@@ -62,7 +63,7 @@ class EditForm extends Component {
 
     return (
       <div className="PostForm">
-        <form onSubmit={e => this.addPost(e, this.state.post)}>
+        <form onSubmit={e => this.editPost(e, this.state.post)}>
           <TextField
           id="filled-title-input"
           label="Title"
@@ -159,13 +160,17 @@ class EditForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained" color="primary" className={classes.button} onClick={e => this.addPost(e, this.state.post)}>Add Post</Button>
+          <Button variant="contained" color="primary" className={classes.button} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
         </form>
       </div>
     );
   }
 }
 
-const PostFormStyles = withStyles(styles)(PostForm);
+const mapStateToProps = state => ({
+  post: state.post
+})
 
-export default connect(null, { addPost })(PostFormStyles)
+const EditFormStyles = withStyles(styles)(EditForm);
+
+export default connect(mapStateToProps, { editPost })(EditFormStyles)

@@ -82,7 +82,7 @@ export const editPost = post => dispatch => {
   axios.put(`https://my-tech-stuff-backend.herokuapp.com/api/post/${post.id}`, post)
   .then(res => {
     console.log(res);
-    dispatch({ type: EDIT_POST_SUCCESS, payload: res.data })
+    dispatch({ type: EDIT_POST_SUCCESS, payload: res.data.data })
   })
   .catch(err => {
     console.log(err);
