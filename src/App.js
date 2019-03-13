@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import PostPage from './components/postpage/PostPage';
 import CatalogGrid from './components/CatalogGrid';
 import ProfilePage from './components/ProfilePage';
