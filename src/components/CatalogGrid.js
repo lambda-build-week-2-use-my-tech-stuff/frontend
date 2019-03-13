@@ -35,9 +35,17 @@ const styles = theme => ({
 });
 
 class AdvancedGridList extends Component {
-   
+
   componentDidMount() {
-    this.props.getPosts();
+    if (this.props.posts.length === 0) {
+      this.props.getPosts();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.deletingPost && !this.props.deletingPost && !this.props.error) {
+      this.props.getPosts();
+    }
   }
 
   render() {
@@ -77,7 +85,8 @@ const styledComponent = withStyles(styles)(AdvancedGridList);
 const mapStateToProps = state => ({
   posts: state.posts,
   fetchingPosts: state.fetchingPosts,
-  error: state.error
+  error: state.error,
+  deletingPost: state.deletingPost
 })
 
 AdvancedGridList.propTypes = {
