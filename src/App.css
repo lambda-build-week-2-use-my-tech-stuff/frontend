@@ -76,3 +76,9 @@
     color: white;
     text-decoration: none;
   }
+
+  .profileLink{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
