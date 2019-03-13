@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PostPage.css';
 import { connect } from 'react-redux';
-import { getPosts } from '../../actions';
+import { getPost } from '../../actions';
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
@@ -23,6 +23,7 @@ class PostPage extends Component {
     post: {
       name: '',
       price: '',
+      category: '',
       location: '',
       description: '',
       image: ''
@@ -30,19 +31,19 @@ class PostPage extends Component {
   }
 
   componentDidMount() {
-    this.props.getPosts()
+    this.props.getPost(this.props.match.params.id)
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.posts !== this.props.posts) {
-      const thisPost = this.props.posts.find(post => post._id === this.props.match.params.id)
+    if (prevProps.post !== this.props.post) {
+      const post = this.props.post;
       this.setState({ post: {
-        name: thisPost.postTitle,
+        name: post.postTitle,
         price: 1121,
-        description: thisPost.description,
-        location: `${thisPost.city}, ${thisPost.state} ${thisPost.zip}`
+        category: post.category,
+        description: post.description,
+        location: `${post.city}, ${post.state} ${post.zip}`
       } })
-      console.log(thisPost)
     }
   }
 
@@ -51,7 +52,7 @@ class PostPage extends Component {
     return (
       <div className="postpage-container">
         <header className="postpage-header">
-          <div>
+          <div className="title-container">
             <h2>{this.state.post.name}</h2>
             <Fab color="primary" aria-label="Add" size="large" className={classes.fab} component={Link} to="/postform">
               <AddIcon />
@@ -64,6 +65,7 @@ class PostPage extends Component {
             </Fab>
           </div>
           <h3>${this.state.post.price}</h3>
+          <h3>{this.state.post.category}</h3>
           <h4>{this.state.post.location}</h4>
         </header>
         <article className="postpage-content">
@@ -76,10 +78,10 @@ class PostPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  post: state.post,
   fetchingPosts: state.fetchingPosts,
   error: state.error
 })
 
 const PostPageStyles = withStyles(styles)(PostPage);
-export default connect(mapStateToProps, { getPosts })(PostPageStyles);
+export default connect(mapStateToProps, { getPost })(PostPageStyles);
