@@ -13,7 +13,7 @@ export default class SignUp extends Component {
     }
 
     changeHandler = e => this.setState({ [e.target.name]: e.target.value });
-    submitDataHandler = () => {
+    submitDataHandler = e => {
         const username = this.state.username;
         const password = this.state.password;
         localStorage.setItem('username', username);
@@ -28,10 +28,10 @@ export default class SignUp extends Component {
             <input className='loginInput' type='password' placeholder='Password' onChange={this.changeHandler} required />
             <input className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} required />
             <input className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} required />
-            <button className='loginBtn' onClick={this.submitDataHandler}>Sign Up</button>
+            <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
             <br/>
             <p>Already Have an Account?</p>
-            <Link to='/login' className='signUP'>Log In</Link>
+            <p className='signUP' onClick={this.props.toggler}>Log In</p>
         </form>
       </div>
     )
