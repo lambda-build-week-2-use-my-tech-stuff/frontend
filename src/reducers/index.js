@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
     case GET_POSTS_SUCCESS:
     return {
       ...state,
-      posts: action.payload,
+      posts: [...action.payload],
       fetchingPosts: false
     }
     case GET_POSTS_FAILURE:
@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
     case GET_POST_SUCCESS:
     return {
       ...state,
-      post: action.payload,
+      post: {...action.payload},
       fetchingPost: false
     }
     case GET_POST_FAILURE:
@@ -95,7 +95,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       editingPost: false,
-      post: action.payload
+      post: {...action.payload}
     }
     case EDIT_POST_FAILURE:
     return {
