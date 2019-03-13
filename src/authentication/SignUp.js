@@ -30,7 +30,7 @@ export default class SignUp extends Component {
             <input className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} required />
             <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
             <br/>
-            <p>Already Have an Account?</p>
+            <p className='p'>Already Have an Account?</p>
             <p className='signUP' onClick={this.props.toggler}>Log In</p>
         </form>
       </div>
