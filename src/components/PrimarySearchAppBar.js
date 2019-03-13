@@ -19,6 +19,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button'
 import FormDialog from './FormDialog(login)';
 
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -96,6 +97,11 @@ class PrimarySearchAppBar extends React.Component {
     catalogCards: [],
     filteredCards: []
   };
+  
+  componentDidMount() {
+    this.setState({ catalogCards: this.props.allPosts})
+    console.log(this.state.catalogCards)
+  }
 
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -113,7 +119,7 @@ class PrimarySearchAppBar extends React.Component {
   handleMobileMenuClose = () => {
     this.setState({ mobileMoreAnchorEl: null });
   };
-  searchHandler = (e) => {
+  searchHandler = e => {
     const filtered = this.state.catalogCards.filter(card => {  
       return card.h2.toLowerCase().includes(e.target.value.toLowerCase()) || card.p.toLowerCase().includes(e.target.value.toLowerCase()) 
     })
@@ -231,3 +237,4 @@ PrimarySearchAppBar.propTypes = {
 };
 
 export default withStyles(styles)(PrimarySearchAppBar);
+
