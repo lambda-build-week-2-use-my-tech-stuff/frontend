@@ -9,7 +9,7 @@ import EditForm from './components/postpage/EditForm';
 import authenticate from './authentication/authenticate';
 import SignUp from './authentication/SignUp';
 import Login from './authentication/Login';
-import PrimarySearchAppBar from './components/PrimarySearchAppBar';
+import PrimarySearchAppBar from './components/PrimarySearchAppBar';   
 
 
 class App extends Component {
