@@ -45,7 +45,8 @@ class PostForm extends Component {
       price: '',
       description: '',
       category: '',
-      image: ''
+      image: '',
+      createdBy: localStorage.getItem('userID')
     }
   }
 

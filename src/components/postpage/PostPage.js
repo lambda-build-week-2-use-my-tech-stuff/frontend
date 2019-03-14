@@ -42,7 +42,8 @@ class PostPage extends Component {
       category: '',
       location: '',
       description: '',
-      image: ''
+      image: '',
+      createdBy: ''
     }
   }
 
@@ -56,7 +57,8 @@ class PostPage extends Component {
         price: 1121,
         category: this.props.post.category,
         description: this.props.post.description,
-        location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`
+        location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`,
+        createdBy: this.props.post.createdBy
       }})
     }
   }
@@ -74,7 +76,8 @@ class PostPage extends Component {
         price: 1121,
         category: post.category,
         description: post.description,
-        location: `${post.city}, ${post.state} ${post.zip}`
+        location: `${post.city}, ${post.state} ${post.zip}`,
+        createdBy: post.createdBy
       } })
     }
   }
@@ -95,14 +98,14 @@ class PostPage extends Component {
           <img src={this.state.post.image} alt={this.state.post.name} />
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
-        <div className='fabPost'>
-        <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
+          {this.state.post.createdBy === localStorage.getItem('userID') && <div className='fabPost'>
+            <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
               <EditIcon></EditIcon>
             </Fab>
             <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
               <DeleteIcon />
             </Fab>
-        </div>
+          </div>}
       </div>
     )
   }
