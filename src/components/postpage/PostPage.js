@@ -73,7 +73,7 @@ class PostPage extends Component {
       const post = this.props.post;
       this.setState({ post: {
         name: post.postTitle,
-        price: 1121,
+        price: post.price,
         category: post.category,
         description: post.description,
         location: `${post.city}, ${post.state} ${post.zip}`,
@@ -98,7 +98,7 @@ class PostPage extends Component {
           <img src={this.state.post.image} alt={this.state.post.name} />
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
-          {this.state.post._id === localStorage.getItem('userID') && <div className='fabPost'>
+          {this.state.post.createdBy === localStorage.getItem('userID') && <div className='fabPost'>
             <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
               <EditIcon></EditIcon>
             </Fab>
