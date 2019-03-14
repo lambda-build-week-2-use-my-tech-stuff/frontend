@@ -149,7 +149,7 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}><Link className='profileLink' to='/profile-page/:id'>Profile</Link></MenuItem>
+        <MenuItem onClick={this.handleMenuClose}><Link className='profileLink' to='/:username/profile'>Profile</Link></MenuItem>
       </Menu>
     );
 

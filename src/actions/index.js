@@ -98,7 +98,7 @@ export const editProfile = profile => dispatch => {
     dispatch({ type: EDIT_PROFILE })
     axios.put(`https://my-tech-stuff-backend.herokuapp.com/signup/${profile.id}`, profile)
     .then(res => {
-      dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.data })
+      dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.data.data })
     })
     .catch(err => {
       dispatch({ type: EDIT_PROFILE_FAILURE, payload: err.message })
