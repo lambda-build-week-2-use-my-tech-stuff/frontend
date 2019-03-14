@@ -99,11 +99,11 @@
     margin-bottom: 1.5%;
   }
 
-  .btnContainer{
+  /* .btnContainer{
     width: 210px;
     display: flex;
     justify-content: space-between;
-  }
+  } */
 
   .aTag{
     color: #2c419b;
