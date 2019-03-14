@@ -86,12 +86,6 @@ class PostPage extends Component {
         <header className="postpage-header">
           <div className="title-container">
             <h2>{this.state.post.name}</h2>
-            {/* <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
-              <EditIcon></EditIcon>
-            </Fab>
-            <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
-              <DeleteIcon />
-            </Fab> */}
           </div>
           <h3>${this.state.post.price}</h3>
           <h3>{this.state.post.category}</h3>
@@ -102,12 +96,12 @@ class PostPage extends Component {
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
         <div className='fabPost'>
-          <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
-            <EditIcon></EditIcon>
-          </Fab>
-          <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
-            <DeleteIcon />
-          </Fab>
+        <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
+              <EditIcon></EditIcon>
+            </Fab>
+            <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
+              <DeleteIcon />
+            </Fab>
         </div>
       </div>
     )

@@ -21,7 +21,7 @@ class App extends Component {
           <Route path="/signup" component={SignUp} />
           <Route exact path="/" component={CatalogGrid} />
           <Route path="/postpages/:id" component={PostPage} />
-          <Route path="/profile-page/:username" component={ProfilePage} />
+          <Route path="/profile/:id" component={ProfilePage} />
           <Route path="/postform" component={PostForm} />
           <Route path="/editform" component={EditForm} />
         </div>
