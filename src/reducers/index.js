@@ -107,7 +107,7 @@ const reducer = (state = initialState, action) => {
     case SEARCH:
     return {
       ...state,
-      posts: state.posts.filter(post => post.includes(action.payload))
+      posts: state.posts.filter(post => post.postTitle.toLowerCase().includes(action.payload.toLowerCase()))
     }
     case SIGNEDIN:
     return {
