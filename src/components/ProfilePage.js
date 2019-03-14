@@ -7,22 +7,37 @@ import { connect } from 'react-redux';
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
+    this.props = props;
     this.state = {
       isEditing: false,
-      profile: {
-        firstname: "Name Here",
-        lastname: "",
-        city: "",
-        state: "",
-        zip: "",
-        dob: "D.O.B. Here",
-        id: this.props.match.params.id
+      user: {
+        email: null,
+        id: this.props.match.params.id,
+        profile: {
+          firstname: "Name Here",
+          lastname: "",
+          city: "",
+          state: "",
+          zip: "",
+          dob: "D.O.B. Here",
+        }
       }
     }
   }
 
   componentDidMount() {
-    this.props.getProfile(this.state.profile.id);
+    this.props.getProfile(this.state.user.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchingProfile && !this.props.fetchingProfile && !this.props.error) {
+      this.setState({
+        user: {
+          ...this.state.user,
+          email: this.props.currentProfile.email
+        }
+      })
+    }
   }
 
   editToggler = e => {
@@ -32,9 +47,12 @@ class ProfilePage extends Component {
   editHandler = e => {
     e.preventDefault();
     this.setState({
-      profile: {
-        ...this.state.profile,
-        [e.target.name]:e.target.value
+      user: {
+        ...this.state.user,
+        profile: {
+          ...this.state.user.profile,
+          [e.target.name]:e.target.value
+        }
       }
     })
   }
@@ -53,14 +71,14 @@ class ProfilePage extends Component {
             <img />
         </div>
         {/* onSubmit={this.editSubmitter} */}
-        <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.profile)} >
+        <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.user)} >
             {/* <input placeholder='Username/email' className='inputField' /> */}
-            {this.state.isEditing ? <input onChange={this.editHandler} name='firstname' placeholder='Name' className='inputField' /> : <p>{this.state.profile.firstname}</p>}
-            {this.state.isEditing ? <input onChange={this.editHandler} name='dob' placeholder='Date of Birth' className='inputField' /> : <p>{this.state.profile.dob}</p>}
-            {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.profile.location}</p>}
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.profile.bio}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='firstname' placeholder='Name' className='inputField' /> : <p>{this.state.user.profile.firstname}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='dob' placeholder='Date of Birth' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.user.profile.location}</p>}
+            {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.user.profile.bio}</p>}
             <br />
-            {this.state.isEditing && <Button onClick={e => this.editProfile(e, this.state.profile)} type="submit" variant="contained" color="secondary">Update Info</Button>} {!this.state.isEditing && <Button type="button" onClick={this.editToggler} variant="contained" color="secondary">Edit Info</Button> }
+            {this.state.isEditing && <Button onClick={e => this.editProfile(e, this.state.user)} type="submit" variant="contained" color="secondary">Update Info</Button>} {!this.state.isEditing && <Button type="button" onClick={this.editToggler} variant="contained" color="secondary">Edit Info</Button> }
         </form>
 
 
@@ -87,4 +105,10 @@ class ProfilePage extends Component {
   }
 }
 
-export default connect(null, { getProfile, editProfile })(ProfilePage);
+const mapStateToProps = state => ({
+  currentProfile: state.currentProfile,
+  error: state.error,
+  fetchingProfile: state.fetchingProfile
+})
+
+export default connect(mapStateToProps, { getProfile, editProfile })(ProfilePage);
