@@ -14,8 +14,8 @@ class ProfilePage extends Component {
         email: null,
         id: this.props.match.params.id,
         profile: {
-          firstname: "Name Here",
-          lastname: "",
+          firstName: "Name Here",
+          lastName: "",
           city: "",
           state: "",
           zip: "",
@@ -34,7 +34,10 @@ class ProfilePage extends Component {
       this.setState({
         user: {
           ...this.state.user,
-          email: this.props.currentProfile.email
+          email: this.props.currentProfile.email,
+          profile: {
+            ...this.props.currentProfile.profile
+          }
         }
       })
     }
@@ -73,10 +76,14 @@ class ProfilePage extends Component {
         {/* onSubmit={this.editSubmitter} */}
         <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.user)} >
             {/* <input placeholder='Username/email' className='inputField' /> */}
-            {this.state.isEditing ? <input onChange={this.editHandler} name='firstname' placeholder='Name' className='inputField' /> : <p>{this.state.user.profile.firstname}</p>}
-            {this.state.isEditing ? <input onChange={this.editHandler} name='dob' placeholder='Date of Birth' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
-            {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.user.profile.location}</p>}
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.user.profile.bio}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='firstName' placeholder='First Name' className='inputField' /> : <p>{this.state.user.profile.firstName}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='lastName' placeholder='Last Name' className='inputField' /> : <p>{this.state.user.profile.lastName}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='city' placeholder='City' className='inputField' /> : <p>{this.state.user.profile.city}</p>}
+            {this.state.isEditing ? <textarea onChange={this.editHandler} name='state' placeholder='State' className='inputField' /> : <p>{this.state.user.profile.state}</p>}
+            <br />
+            {this.state.isEditing ? <textarea onChange={this.editHandler} name='zip' placeholder='ZIP code' className='inputField' /> : <p>{this.state.user.profile.zip}</p>}
+            <br />
+            {this.state.isEditing ? <textarea onChange={this.editHandler} name='dob' placeholder='D.O.B.' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
             <br />
             {this.state.isEditing && <Button onClick={e => this.editProfile(e, this.state.user)} type="submit" variant="contained" color="secondary">Update Info</Button>} {!this.state.isEditing && <Button type="button" onClick={this.editToggler} variant="contained" color="secondary">Edit Info</Button> }
         </form>
