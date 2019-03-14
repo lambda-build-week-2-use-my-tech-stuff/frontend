@@ -42,7 +42,9 @@ class SignUp extends Component {
             <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
             <br/>
             <p className='p'>Already Have an Account?</p>
-            <p className='signUP' onClick={this.props.toggler}>Log In</p>
+            <Link to="/signin">
+              <p className='signUP'>Log In</p>
+            </Link>
         </form>
       </div>
     )

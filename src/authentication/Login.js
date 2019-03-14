@@ -10,8 +10,7 @@ class Login extends Component {
         super();
         this.state = {
             username: "",
-            password: "",
-            isSignedUp: false,
+            password: ""
         }
     }
 
@@ -33,25 +32,25 @@ class Login extends Component {
           console.log(err);
         })
     }
-    toggler = e => {
-      this.setState({ isSignedUp: !this.state.isSignedUp })
-    }
+
   render() {
     return (
       <>
-      {this.state.isSignedUp ? <div className='login'>
+      <div className='login'>
         <form className='loginForm' onSubmit={this.submitDataHandler}>
             <h2 className='logo'>mystuff</h2>
             <input className='loginInput' type='text' placeholder='Username' onChange={this.changeUserNameHandler} required />
             <input className='loginInput' type='password' placeholder='Password' onChange={this.changePasswordHandler} required />
             <button className='loginBtn'>Log In</button>
             <br/>
-            <p className='p'>Dont Have an Account?</p>
-            <p className='signUP' onClick={this.toggler} >Sign Up</p>
+            <p className='p'>Don't Have an Account?</p>
+            <Link to="/signup">
+              <p className='signUP'>Sign Up</p>
+            </Link>
         </form>
-    </div> : <SignUp toggler={this.toggler} /> }
+        </div>
 
-  </>
+        </>
     )
   }
 }
