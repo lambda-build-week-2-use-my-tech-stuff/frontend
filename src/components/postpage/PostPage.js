@@ -74,10 +74,10 @@ class PostPage extends Component {
             <Fab color="primary" aria-label="Add" size="large" className={classes.fab} component={Link} to="/postform">
               <AddIcon />
             </Fab>
-            <Fab color="secondary" aria-label="Edit" className={classes.fab} component={Link} to='/editform'>
+            <Fab aria-label="Edit" className={classes.fab} component={Link} to='/editform'>
               <EditIcon></EditIcon>
             </Fab>
-            <Fab aria-label="Delete" className={classes.fab} onClick={() => this.deletePost(this.props.match.params.id)}>
+            <Fab aria-label="Delete" color="secondary"className={classes.fab} onClick={() => this.deletePost(this.props.match.params.id)}>
               <DeleteIcon />
             </Fab>
           </div>
