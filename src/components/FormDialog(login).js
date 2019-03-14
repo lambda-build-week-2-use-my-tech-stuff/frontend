@@ -29,6 +29,7 @@ class FormDialog extends React.Component {
 
   logOut = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('userID');
     this.props.toggleSignedIn();
   }
 

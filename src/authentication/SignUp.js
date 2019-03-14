@@ -24,7 +24,8 @@ class SignUp extends Component {
         axios.post('https://my-tech-stuff-backend.herokuapp.com/signup', userInfo)
         .then(res => {
           console.log(res)
-          localStorage.setItem('jwt', res.data.token)
+          localStorage.setItem('jwt', res.data.token);
+          localStorage.setItem('userID', res.data.userId);
           this.props.toggleSignedIn();
           alert('Successfully Signed Up! You will now be Logged In');
           this.props.history.push('/');

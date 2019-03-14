@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE, GET_POST, GET_POST_SUCCESS, GET_POST_FAILURE, ADD_POST, ADD_POST_SUCCESS, ADD_POST_FAILURE, DELETE_POST, DELETE_POST_SUCCESS, DELETE_POST_FAILURE, EDIT_POST, EDIT_POST_SUCCESS, EDIT_POST_FAILURE, SEARCH, SIGNEDIN } from '../actions';
+import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE, GET_POST, GET_POST_SUCCESS, GET_POST_FAILURE, ADD_POST, ADD_POST_SUCCESS, ADD_POST_FAILURE, DELETE_POST, DELETE_POST_SUCCESS, DELETE_POST_FAILURE, EDIT_POST, EDIT_POST_SUCCESS, EDIT_POST_FAILURE, GET_PROFILE, GET_PROFILE_SUCCESS, GET_PROFILE_FAILURE, EDIT_PROFILE, EDIT_PROFILE_SUCCESS, EDIT_PROFILE_FAILURE, SEARCH, SIGNEDIN } from '../actions';
 
 const initialState = {
   posts: [],
@@ -9,7 +9,11 @@ const initialState = {
   updatingPost: false,
   deletingPost: false,
   error: null,
-  signedIn: false
+  signedIn: false,
+  currentUser: null,
+  currentProfile: null,
+  fetchingProfile: false,
+  editingProfile: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,7 +45,7 @@ const reducer = (state = initialState, action) => {
     case GET_POST_SUCCESS:
     return {
       ...state,
-      post: {...action.payload},
+      post: action.payload,
       fetchingPost: false
     }
     case GET_POST_FAILURE:
@@ -96,12 +100,48 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       editingPost: false,
-      post: {...action.payload}
+      post: action.payload
     }
     case EDIT_POST_FAILURE:
     return {
       ...state,
       editingPost: false,
+      error: action.payload
+    }
+    case GET_PROFILE:
+    return {
+      ...state,
+      fetchingProfile: true,
+      error: null
+    }
+    case GET_PROFILE_SUCCESS:
+    return {
+      ...state,
+      fetchingProfile: false,
+      currentProfile: action.payload
+    }
+    case GET_PROFILE_FAILURE:
+    return {
+      ...state,
+      fetchingProfile: false,
+      error: action.payload
+    }
+    case EDIT_PROFILE:
+    return {
+      ...state,
+      editingProfile: true,
+      error: null
+    }
+    case EDIT_PROFILE_SUCCESS:
+    return {
+      ...state,
+      editingProfile: false,
+      currentProfile: action.payload
+    }
+    case EDIT_PROFILE_FAILURE:
+    return {
+      ...state,
+      editingProfile: false,
       error: action.payload
     }
     case SEARCH:

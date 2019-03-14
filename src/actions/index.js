@@ -90,15 +90,30 @@ export const editPost = post => dispatch => {
   })
 }
 
+export const GET_PROFILE = 'GET_PROFILE';
+export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
+export const GET_PROFILE_FAILURE = 'GET_PROFILE_FAILURE';
+
+export const getProfile = id => dispatch => {
+    dispatch({ type: GET_PROFILE })
+    axios.get(`https://my-tech-stuff-backend.herokuapp.com/api/user/${id}`)
+    .then(res => {
+      dispatch({ type: GET_PROFILE_SUCCESS, payload: res.data.data })
+    })
+    .catch(err => {
+      dispatch({ type: GET_PROFILE_FAILURE, payload: err.message })
+    })
+}
+
 export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
 export const EDIT_PROFILE_FAILURE = 'EDIT_PROFILE_FAILURE';
 
 export const editProfile = profile => dispatch => {
     dispatch({ type: EDIT_PROFILE })
-    axios.put(`https://my-tech-stuff-backend.herokuapp.com/signup/${profile.id}`, profile)
+    axios.put(`https://my-tech-stuff-backend.herokuapp.com/api/user/${profile.id}`, profile)
     .then(res => {
-      dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.data })
+      dispatch({ type: EDIT_PROFILE_SUCCESS, payload: res.data.data })
     })
     .catch(err => {
       dispatch({ type: EDIT_PROFILE_FAILURE, payload: err.message })
