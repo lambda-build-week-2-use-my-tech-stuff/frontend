@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   button: {
@@ -31,7 +32,32 @@ const styles = theme => ({
     '&:hover': {
       backgroundColor: fade('#ffa500', .75),
     },
-  }
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
 });
 
 class ProfilePage extends Component {
@@ -100,23 +126,23 @@ class ProfilePage extends Component {
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
-            <h2>*USERNAME HERE*</h2>
+            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Profile Page</h2>
             <img />
         </div>
         {/* onSubmit={this.editSubmitter} */}
         <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.user)} >
             {/* <input placeholder='Username/email' className='inputField' /> */}
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='firstName' placeholder='First Name' className='inputField' /> : <p>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='firstName' placeholder='First Name' className='inputField' /> : <p>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}</p>}
             <br />
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='lastName' placeholder='Last Name' className='inputField' /> : null}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='lastName' placeholder='Last Name' className='inputField' /> : null}
             <br />
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='city' placeholder='City' className='inputField' /> : <p>{this.state.user.profile.city}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='city' placeholder='City' className='inputField' /> : <p>{this.state.user.profile.city}</p>}
             <br />
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='state' placeholder='State' className='inputField' /> : <p>{this.state.user.profile.state}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='state' placeholder='State' className='inputField' /> : <p>{this.state.user.profile.state}</p>}
             <br />
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='zip' placeholder='ZIP code' className='inputField' /> : <p>{this.state.user.profile.zip}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='zip' placeholder='ZIP code' className='inputField' /> : <p>{this.state.user.profile.zip}</p>}
             <br />
-            {this.state.isEditing ? <textarea onChange={this.editHandler} name='dob' placeholder='D.O.B.' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='dob' placeholder='D.O.B.' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
             <br />
             {this.state.isEditing && <Button onClick={e => this.editProfile(e, this.state.user)} type="submit" variant="contained" className={classes.edit} >Update Info</Button>} {!this.state.isEditing && <Button type="submit" onClick={this.editToggler} variant="contained" className={classes.edit}>Edit Info</Button> }
         </form>
@@ -133,7 +159,7 @@ class ProfilePage extends Component {
 
         {/* /////////////User's Posts */}
         <div className='profilePostHeader'>
-            <h2 className='userNameTitle'>*USERNAME HERE* Posts</h2>
+            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Posts</h2>
               <Fab aria-label="Add" size="large" className={classes.add} component={Link} to="/postform">
                 <AddIcon />
               </Fab>

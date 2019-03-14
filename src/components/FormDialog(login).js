@@ -31,6 +31,7 @@ class FormDialog extends React.Component {
     localStorage.removeItem('jwt');
     localStorage.removeItem('userID');
     this.props.toggleSignedIn();
+    this.props.history.push("/")
   }
 
   signIn = () => {
@@ -45,15 +46,16 @@ class FormDialog extends React.Component {
     return (
       <div className='signUpBtn'>
         {this.props.signedIn ? <Button variant="outlined" color="inherit" onClick={this.logOut}>
-          Sign Out
+          Log Out
         </Button> :
         <>
-          <Button variant="outlined" color="inherit" onClick={this.signIn}>
+          <Button variant="outlined"  color="inherit" onClick={this.signIn}>
             Log In
           </Button>
-          <Button variant="outlined" color="inherit" onClick={this.signUp}>
+          {/* <Button variant="outlined" color="inherit" onClick={this.signUp}>
             Sign Up
-          </Button>
+          </Button> */}
+    
         </> }
         <Dialog
           open={this.state.open}

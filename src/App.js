@@ -17,8 +17,8 @@ class App extends Component {
     return (
         <div className="App">
           <PrimarySearchAppBar />
-          <Route path="/signin" component={Login} />
-          <Route path="/signup" component={SignUp} />
+          <Route path="/signin" exact component={Login} />
+          <Route path="/signup" exact component={SignUp} />
           <Route exact path="/" component={CatalogGrid} />
           <Route path="/postpages/:id" component={PostPage} />
           <Route path="/profile/:id" component={ProfilePage} />

@@ -4,6 +4,37 @@ import { Link, withRouter  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSignedIn } from '../actions';
 import { Popover } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+});
 
 class SignUp extends Component {
     state = {
@@ -39,13 +70,15 @@ class SignUp extends Component {
       <div className='login'>
         <form className='loginForm' onSubmit={this.submitDataHandler} >
             <h2 className='logo'>mystuff</h2>
-            <input className='loginInput' name="username" type='text' placeholder='Username' onChange={this.changeHandler} required />
-            <input className='loginInput' name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
-            <input className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} />
-            <input className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} />
+            <TextField className='loginInput' name="username" type='text' placeholder='Username' onChange={this.changeHandler} required />
+            <TextField className='loginInput' name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
+            <TextField className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} />
+            <TextField className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} />
+            <br />
             <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
             <br/>
             <p className='p'>Already Have an Account?</p>
+            <br />
             <Link to="/signin">
               <p className='signUP'>Log In</p>
             </Link>
