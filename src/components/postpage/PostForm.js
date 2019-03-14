@@ -46,7 +46,7 @@ class PostForm extends Component {
       description: '',
       category: '',
       image: '',
-      _id: localStorage.getItem('userID')
+      createdBy: localStorage.getItem('userID')
     }
   }
 
