@@ -132,7 +132,8 @@ class PrimarySearchAppBar extends React.Component {
   };
 
   searchHandler = e => {
-    this.setState({ searched: e.target.value })
+    console.log(this.state)
+    this.setState({ ...this.state, [e.target.name]: e.target.value })
   }
 
   searchSubmit = (e, searchedPost) => {
@@ -211,6 +212,7 @@ class PrimarySearchAppBar extends React.Component {
                 </div>
                 <form onSubmit={e => this.searchSubmit(e, this.state.searched)}>
                   <InputBase
+                    name="searched"
                     value={this.state.searched}
                     placeholder="Search…"
                     onChange={this.searchHandler}

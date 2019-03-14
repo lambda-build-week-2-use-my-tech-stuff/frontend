@@ -9,6 +9,7 @@ const initialState = {
   updatingPost: false,
   deletingPost: false,
   error: null,
+  signingIn: false,
   signedIn: false,
   currentUser: null,
   currentProfile: null,

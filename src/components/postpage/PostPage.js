@@ -43,7 +43,7 @@ class PostPage extends Component {
       location: '',
       description: '',
       image: '',
-      createdBy: ''
+      _id: ''
     }
   }
 
@@ -58,7 +58,7 @@ class PostPage extends Component {
         category: this.props.post.category,
         description: this.props.post.description,
         location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`,
-        createdBy: this.props.post.createdBy
+        _id: this.props.post._id
       }})
     }
   }
@@ -77,7 +77,7 @@ class PostPage extends Component {
         category: post.category,
         description: post.description,
         location: `${post.city}, ${post.state} ${post.zip}`,
-        createdBy: post.createdBy
+        _id: post._id
       } })
     }
   }
@@ -98,7 +98,7 @@ class PostPage extends Component {
           <img src={this.state.post.image} alt={this.state.post.name} />
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
-          {this.state.post.createdBy === localStorage.getItem('userID') && <div className='fabPost'>
+          {this.state.post._id === localStorage.getItem('userID') && <div className='fabPost'>
             <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
               <EditIcon></EditIcon>
             </Fab>
