@@ -1,12 +1,42 @@
 import React, { Component } from 'react';
 import MediaCard from './MediaCard';
 import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import { editProfile } from '../actions';
 import { connect } from 'react-redux';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import { Link } from 'react-router-dom'
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  add: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#24dc8e',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#24dc8e', .75),
+    },
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  }
+});
 
 class ProfilePage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       profile: {
         isEditing: false,
@@ -37,6 +67,7 @@ editProfile = (e, profile) => {
 }
 
   render() {
+    const { classes } = this.props;
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
@@ -51,7 +82,7 @@ editProfile = (e, profile) => {
           {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.profile.location}</p>}
           {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.profile.bio}</p>}
           <br />
-          <Button type='submit' onClick={this.editToggler} variant="contained" color="secondary">{this.state.isEditing ? 'Update Info' : 'Edit Info'}</Button>
+          <Button type='submit' onClick={this.editToggler} variant="contained" className={classes.edit} >{this.state.isEditing ? 'Update Info' : 'Edit Info'}</Button>
           </form>
 
 
@@ -66,7 +97,12 @@ editProfile = (e, profile) => {
         {/* </form> */}
 
         {/* /////////////User's Posts */}
-        <h2 className='userNameTitle'>*USERNAME HERE* Posts</h2>
+        <div className='profilePostHeader'>
+            <h2 className='userNameTitle'>*USERNAME HERE* Posts</h2>
+              <Fab aria-label="Add" size="large" className={classes.add} component={Link} to="/postform">
+                <AddIcon />
+              </Fab>
+        </div>
         <div className='profilePosts' >
             <MediaCard />
             <MediaCard />
@@ -78,4 +114,6 @@ editProfile = (e, profile) => {
   }
 }
 
-export default connect(null, { editProfile })(ProfilePage);
+
+const ProfilePageStyles = withStyles(styles)(ProfilePage);
+export default connect(null, { editProfile })(ProfilePageStyles);

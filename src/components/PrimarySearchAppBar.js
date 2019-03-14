@@ -93,6 +93,14 @@ const styles = theme => ({
       display: 'none',
     },
   },
+  profile: {
+    color: '#2c419b',
+    'text-decoration': 'none',
+    'font-weight': 'bold',
+    '&:hover': {
+      color: fade('#2c419b', .75),
+    },
+  },
 });
 
 class PrimarySearchAppBar extends React.Component {
@@ -150,7 +158,7 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}><Link className='profileLink' to='/profile-page/:id'>Profile</Link></MenuItem>
+        <MenuItem onClick={this.handleMenuClose}><Link className={classes.profile} to='/profile-page/:id'>Profile</Link></MenuItem>
       </Menu>
     );
 
@@ -195,7 +203,7 @@ class PrimarySearchAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              <Link to='/' className='techLink' >Use My Tech Catalog</Link>
+              <Link to='/' className='techLink' >MyStuff Catalog</Link>
             </Typography>
             <div className='searchBar'>
               <div className={classes.search}>
