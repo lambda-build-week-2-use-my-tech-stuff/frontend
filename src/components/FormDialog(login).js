@@ -45,15 +45,17 @@ class FormDialog extends React.Component {
     return (
       <div className='signUpBtn'>
         {this.props.signedIn ? <Button variant="outlined" color="inherit" onClick={this.logOut}>
-          Sign Out
+          Log Out
         </Button> :
         <>
-          <Button variant="outlined" color="inherit" onClick={this.signIn}>
+          <div className='btnContainer'>
+          <Button variant="outlined"  color="inherit" onClick={this.signIn}>
             Log In
           </Button>
           <Button variant="outlined" color="inherit" onClick={this.signUp}>
             Sign Up
           </Button>
+          </div>
         </> }
         <Dialog
           open={this.state.open}

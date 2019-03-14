@@ -181,5 +181,4 @@ const mapStateToProps = state => ({
 })
 
 const EditFormStyles = withStyles(styles)(EditForm);
-
 export default connect(mapStateToProps, { editPost })(EditFormStyles)

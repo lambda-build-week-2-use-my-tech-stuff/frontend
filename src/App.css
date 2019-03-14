@@ -98,3 +98,9 @@
   .profilePostHeader{
     margin-bottom: 1.5%;
   }
+
+  .btnContainer{
+    width: 210px;
+    display: flex;
+    justify-content: space-between;
+  }
