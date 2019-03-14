@@ -76,7 +76,7 @@ class PostPage extends Component {
             <Fab aria-label="Edit" color='primary' className={classes.fab} component={Link} to='/editform'>
               <EditIcon></EditIcon>
             </Fab>
-            <Fab aria-label="Delete" color="inherit"className={classes.fab} onClick={() => this.deletePost(this.props.match.params.id)}>
+            <Fab aria-label="Delete" color="inherit" className={classes.fab} onClick={() => this.deletePost(this.props.match.params.id)}>
               <DeleteIcon />
             </Fab>
           </div>
