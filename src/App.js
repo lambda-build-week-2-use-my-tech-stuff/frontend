@@ -17,8 +17,7 @@ class App extends Component {
     return (
         <div className="App">
           <PrimarySearchAppBar />
-          {/* <Route exact path="/signup" component={SignUp} />
-          <Route exact path='/login' render={props => <Login {...props} />} /> */}
+          <Route path="/signin" component={Login}/>
           <Route exact path="/" component={CatalogGrid} />
           <Route path="/postpages/:id" component={PostPage} />
           <Route path="/profile-page/:id" component={ProfilePage} />
@@ -29,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default authenticate(App);
+export default App;

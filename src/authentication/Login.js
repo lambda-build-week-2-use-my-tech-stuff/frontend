@@ -19,10 +19,6 @@ class Login extends Component {
     changePasswordHandler = e => this.setState({ password: e.target.value });
     submitDataHandler = e => {
         e.preventDefault();
-        const username = this.state.username;
-        const password = this.state.password;
-        // localStorage.setItem('username', username);
-        // localStorage.setItem('password', password);
         const userInfo = {
           "email": this.state.username,
           "password": this.state.password
@@ -31,7 +27,7 @@ class Login extends Component {
         .then(res => {
           console.log(res);
           localStorage.setItem('jwt', res.data.token);
-          window.location.reload()
+          this.props.history.push('/')
         })
         .catch(err => {
           console.log(err);
@@ -71,4 +67,4 @@ class Login extends Component {
 //             <Link to='/signup' className='signUP'>Sign Up</Link>
 //         </form>
 //     </div>
-export default withRouter(Login);
+export default Login;
