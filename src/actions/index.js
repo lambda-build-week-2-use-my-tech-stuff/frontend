@@ -126,8 +126,25 @@ export const searchBar = search => {
   return { type: SEARCH, payload: search }
 }
 
-export const SIGNEDIN = 'SIGNEDIN';
+export const SIGN_IN = 'SING_IN';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE'
 
-export const toggleSignedIn = () => {
-  return { type: SIGNEDIN, payload: localStorage.getItem('jwt') }
+export const toggleSignedIn = userInfo => dispatch => {
+  dispatch({ type: SIGN_IN})
+  axios.post('https://my-tech-stuff-backend.herokuapp.com/signin', userInfo)
+  .then(res => {
+    dispatch({ type: SIGN_IN_SUCCESS, payload: res.data.token})
+    localStorage.setItem('jwt', res.data.token);
+    localStorage.setItem('userID', res.data.userId);
+  })
+  .catch(err => {
+    dispatch({ type: SIGN_IN_FAILURE, payload: err.message})
+  })
+}
+
+export const SIGNED_IN = "SIGNED_IN";
+
+export const checkSignIn = () => {
+  return {type: SIGNED_IN, payload: localStorage.getItem('jwt') }
 }

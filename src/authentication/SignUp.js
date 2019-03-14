@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link, withRouter  } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSignedIn } from '../actions';
@@ -38,39 +37,36 @@ const styles = theme => ({
 
 class SignUp extends Component {
     state = {
-        username: "",
-        password: "",
-        dob: "",
-        location: ""
+        userInfo: {
+          "email": "",
+          "password": "",
+          "dob": "",
+          "location": ""
+        }
       }
 
-    changeHandler = e => this.setState({ [e.target.name]: e.target.value });
-
-    submitDataHandler = e => {
-        e.preventDefault();
-        const userInfo = {
-          "email": this.state.username,
-          "password": this.state.password
+    changeHandler = e => {
+      e.preventDefault();
+      this.setState({
+        userInfo: {
+          ...this.state.userInfo,
+          [e.target.name]: e.target.value
         }
-        axios.post('https://my-tech-stuff-backend.herokuapp.com/signup', userInfo)
-        .then(res => {
-          console.log(res)
-          localStorage.setItem('jwt', res.data.token);
-          localStorage.setItem('userID', res.data.userId);
-          this.props.toggleSignedIn();
-          alert('Successfully Signed Up! You will now be Logged In');
-          this.props.history.push('/');
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      })
+    };
+
+    submitDataHandler = (e, userInfo) => {
+      e.preventDefault();
+      this.props.toggleSignedIn(userInfo);
+      alert('Successfully Signed Up! You will now be Logged In');
+      this.props.history.push('/');
     }
   render() {
     return (
       <div className='login'>
-        <form className='loginForm' onSubmit={this.submitDataHandler} >
+        <form className='loginForm' onSubmit={e => this.submitDataHandler(e, this.state.userInfo)} >
             <h2 className='logo'>mystuff</h2>
-            <TextField className='loginInput' name="username" type='text' placeholder='Username' onChange={this.changeHandler} required />
+            <TextField className='loginInput' name="email" type='text' placeholder='Username' onChange={this.changeHandler} required />
             <TextField className='loginInput' name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
             <TextField className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} />
             <TextField className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} />
