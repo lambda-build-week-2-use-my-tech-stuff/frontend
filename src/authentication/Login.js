@@ -44,15 +44,3 @@ export default class Login extends Component {
     )
   }
 }
-
-// <div className='login'>
-//         <form className='loginForm' onSubmit={this.submitDataHandler}>
-//             <h2 className='logo'>mystuff</h2>
-//             <input className='loginInput' type='text' placeholder='Username' onChange={this.changeUserNameHandler} required />
-//             <input className='loginInput' type='password' placeholder='Password' onChange={this.changePasswordHandler} required />
-//             <button className='loginBtn'>Log In</button>
-//             <br/>
-//             <p>Dont Have an Account?</p>
-//             <Link to='/signup' className='signUP'>Sign Up</Link>
-//         </form>
-//     </div>
