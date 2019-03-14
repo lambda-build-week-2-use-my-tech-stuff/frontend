@@ -5,15 +5,18 @@ import { editProfile } from '../actions';
 import { connect } from 'react-redux';
 
 class ProfilePage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      isEditing: false,
       profile: {
-        isEditing: false,
-        name: 'Name Here',
+        firstname: 'Name Here',
+        lastname: '',
+        city: '',
+        state: '',
+        zip: '',
         dob: 'D.O.B. Here',
-        location: 'Location Here',
-        bio: 'Bio Here'
+        id: this.props.match.params.id
       }
     }
   }
@@ -21,20 +24,20 @@ class ProfilePage extends Component {
   editToggler = e => {
     this.setState({ isEditing: !this.state.isEditing })
   }
+
   editHandler = e => {
-    this.setState({ [e.target.name] : e.target.value })
+    e.preventDefault();
+    this.setState({
+      profile: {
+        [e.target.name]:e.target.value
+      }
+    })
   }
-editSubmitter = e => {
-  e.preventDefault();
-  this.setState({ name: this.state.profile.name })
-  this.setState({ name: this.state.profile.dob })
-  this.setState({ name: this.state.profile.location })
-  this.setState({ name: this.state.profile.bio })
-}
-editProfile = (e, profile) => {
-  e.preventDefault();
-  this.props.editProfile(profile)
-}
+
+  editProfile = (e, profile) => {
+    e.preventDefault();
+    this.props.editProfile(profile)
+  }
 
   render() {
     return (
@@ -44,9 +47,9 @@ editProfile = (e, profile) => {
             <img />
         </div>
         {/* onSubmit={this.editSubmitter} */}
-        <form className='profilePage'  onSubmit={this.editSubmitter} >
+        <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.profile)} >
           {/* <input placeholder='Username/email' className='inputField' /> */}
-          {this.state.isEditing ? <input onChange={this.editHandler} name='name' placeholder='Name' className='inputField' /> : <p>{this.state.profile.name}</p>}
+          {this.state.isEditing ? <input onChange={this.editHandler} name='firstname' placeholder='Name' className='inputField' /> : <p>{this.state.profile.firstname}</p>}
           {this.state.isEditing ? <input onChange={this.editHandler} name='dob' placeholder='Date of Birth' className='inputField' /> : <p>{this.state.profile.dob}</p>}
           {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.profile.location}</p>}
           {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.profile.bio}</p>}
@@ -55,14 +58,14 @@ editProfile = (e, profile) => {
           </form>
 
 
-        
+
         {/* <form className='profilePage' >
           {/* <input placeholder='Username' className='inputField' /> */}
           {/* <input placeholder='Name' onChange={this.changeHandler} name="name" value={this.state.profile.name} className='inputField' />
           <input placeholder='Date of Birth' onChange={this.changeHandler} name="dob" value={this.state.profile.dob}  className='inputField' />
           <input placeholder='Location' onChange={this.changeHandler} name="location" value={this.state.profile.location}  className='inputField' />
-          <textarea placeholder='Bio' onChange={this.changeHandler} name="bio" value={this.state.profile.bio} className='inputField' /> */} 
-          
+          <textarea placeholder='Bio' onChange={this.changeHandler} name="bio" value={this.state.profile.bio} className='inputField' /> */}
+
         {/* </form> */}
 
         {/* /////////////User's Posts */}
