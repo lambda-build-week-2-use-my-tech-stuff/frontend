@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleSignedIn } from '../actions';
+import { checkSignIn } from '../actions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,7 +16,7 @@ class FormDialog extends React.Component {
   };
 
   componentDidMount() {
-    this.props.toggleSignedIn();
+    this.props.checkSignIn();
   }
 
   handleClickOpen = () => {
@@ -30,7 +30,7 @@ class FormDialog extends React.Component {
   logOut = () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('userID');
-    this.props.toggleSignedIn();
+    this.props.checkSignIn();
     this.props.history.push("/")
   }
 
@@ -55,7 +55,7 @@ class FormDialog extends React.Component {
           {/* <Button variant="outlined" color="inherit" onClick={this.signUp}>
             Sign Up
           </Button> */}
-    
+
         </> }
         <Dialog
           open={this.state.open}
@@ -107,4 +107,4 @@ const mapStateToProps = state => ({
 })
 
 const FormDialogRouter = withRouter(FormDialog);
-export default connect(mapStateToProps, { toggleSignedIn })(FormDialogRouter);
+export default connect(mapStateToProps, { checkSignIn })(FormDialogRouter);

@@ -43,7 +43,7 @@ class PostPage extends Component {
       location: '',
       description: '',
       image: '',
-      _id: ''
+      createdBy: ''
     }
   }
 
@@ -58,7 +58,7 @@ class PostPage extends Component {
         category: this.props.post.category,
         description: this.props.post.description,
         location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`,
-        _id: this.props.post._id
+        createdBy: this.props.post.createdBy
       }})
     }
   }
@@ -77,7 +77,7 @@ class PostPage extends Component {
         category: post.category,
         description: post.description,
         location: `${post.city}, ${post.state} ${post.zip}`,
-        _id: post._id
+        createdBy: post.createdBy
       } })
     }
   }
