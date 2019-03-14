@@ -42,6 +42,7 @@ const styles = theme => ({
     },
   },
   search: {
+
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -184,9 +185,9 @@ class PrimarySearchAppBar extends React.Component {
     );
 
     return (
-      <div className={classes.root}>
+      <div  className={classes.root}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar className='toolBarStyle'>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
             </IconButton>

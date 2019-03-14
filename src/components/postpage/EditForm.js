@@ -55,7 +55,6 @@ class EditForm extends Component {
         [e.target.name]: e.target.value
       }
     }));
-    console.log(this.state);
   };
 
   render() {
@@ -160,7 +159,7 @@ class EditForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained" color="primary" className={classes.button} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
+          <Button variant="contained"  color="primary" className={classes.button} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
         </form>
       </div>
     );

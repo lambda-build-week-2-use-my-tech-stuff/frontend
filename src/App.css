@@ -21,7 +21,7 @@
 }
 
 .profilePage{
-  border: 2px solid black;
+  border: 3px solid #2c419b;
   display: flex;
   flex-direction: column;
   padding: 2%;
@@ -78,7 +78,15 @@
   }
 
   .profileLink{
-    color: black;
+    color: #2c419b;
     text-decoration: none;
     font-weight: bold;
+  }
+
+  .appBarStyle{
+    color: #0087ea;
+  }
+
+  .btnOrange{
+    color:#ffa500;
   }
