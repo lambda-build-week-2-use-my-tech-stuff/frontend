@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MediaCard from './MediaCard';
 import Button from '@material-ui/core/Button';
-import { editProfile } from '../actions';
+import { getProfile, editProfile } from '../actions';
 import { connect } from 'react-redux';
 
 class ProfilePage extends Component {
@@ -10,15 +10,19 @@ class ProfilePage extends Component {
     this.state = {
       isEditing: false,
       profile: {
-        firstname: 'Name Here',
-        lastname: '',
-        city: '',
-        state: '',
-        zip: '',
-        dob: 'D.O.B. Here',
+        firstname: "Name Here",
+        lastname: "",
+        city: "",
+        state: "",
+        zip: "",
+        dob: "D.O.B. Here",
         id: this.props.match.params.id
       }
     }
+  }
+
+  componentDidMount() {
+    this.props.getProfile(this.state.profile.id);
   }
 
   editToggler = e => {
@@ -29,6 +33,7 @@ class ProfilePage extends Component {
     e.preventDefault();
     this.setState({
       profile: {
+        ...this.state.profile,
         [e.target.name]:e.target.value
       }
     })
@@ -37,6 +42,7 @@ class ProfilePage extends Component {
   editProfile = (e, profile) => {
     e.preventDefault();
     this.props.editProfile(profile)
+    this.editToggler();
   }
 
   render() {
@@ -48,14 +54,14 @@ class ProfilePage extends Component {
         </div>
         {/* onSubmit={this.editSubmitter} */}
         <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.profile)} >
-          {/* <input placeholder='Username/email' className='inputField' /> */}
-          {this.state.isEditing ? <input onChange={this.editHandler} name='firstname' placeholder='Name' className='inputField' /> : <p>{this.state.profile.firstname}</p>}
-          {this.state.isEditing ? <input onChange={this.editHandler} name='dob' placeholder='Date of Birth' className='inputField' /> : <p>{this.state.profile.dob}</p>}
-          {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.profile.location}</p>}
-          {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.profile.bio}</p>}
-          <br />
-          <Button type='submit' onClick={this.editToggler} variant="contained" color="secondary">{this.state.isEditing ? 'Update Info' : 'Edit Info'}</Button>
-          </form>
+            {/* <input placeholder='Username/email' className='inputField' /> */}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='firstname' placeholder='Name' className='inputField' /> : <p>{this.state.profile.firstname}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='dob' placeholder='Date of Birth' className='inputField' /> : <p>{this.state.profile.dob}</p>}
+            {this.state.isEditing ? <input onChange={this.editHandler} name='location' placeholder='Location' className='inputField' /> : <p>{this.state.profile.location}</p>}
+            {this.state.isEditing ? <textarea onChange={this.editHandler} name='bio' placeholder='Bio' className='inputField' /> : <p>{this.state.profile.bio}</p>}
+            <br />
+            {this.state.isEditing && <Button onClick={e => this.editProfile(e, this.state.profile)} type="submit" variant="contained" color="secondary">Update Info</Button>} {!this.state.isEditing && <Button type="button" onClick={this.editToggler} variant="contained" color="secondary">Edit Info</Button> }
+        </form>
 
 
 
@@ -81,4 +87,4 @@ class ProfilePage extends Component {
   }
 }
 
-export default connect(null, { editProfile })(ProfilePage);
+export default connect(null, { getProfile, editProfile })(ProfilePage);
