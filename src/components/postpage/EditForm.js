@@ -5,6 +5,7 @@ import { editPost } from '../../actions';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 
 const styles = theme => ({
@@ -24,6 +25,14 @@ const styles = theme => ({
   },
    button: {
     margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
   },
 });
 
@@ -160,7 +169,7 @@ class EditForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained"  color='primary' className={classes.button} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
+          <Button variant="contained"  color='inherit' className={classes.edit} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
         </form>
       </div>
     );

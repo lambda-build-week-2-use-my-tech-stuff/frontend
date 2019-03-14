@@ -21,7 +21,7 @@
 }
 
 .profilePage{
-  border: 3px solid #2c419b;
+  border: 3px solid #0087ea;
   display: flex;
   flex-direction: column;
   padding: 2%;
@@ -89,4 +89,12 @@
 
   .btnOrange{
     color:#ffa500;
+  }
+
+  .fabPost{
+    margin-top: 4%;
+  }
+
+  .profilePostHeader{
+    margin-bottom: 1.5%;
   }
