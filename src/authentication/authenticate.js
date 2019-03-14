@@ -12,8 +12,10 @@ const authenticate = App =>
     }
 
     componentDidMount(){
-      if ((localStorage.getItem('username')) && (localStorage.getItem('password')) ){
-        this.setState({ loggedIn: true })
+      if (localStorage.getItem('jwt') ){
+        this.setState({
+          loggedIn: true
+        })
       }
     }
 

@@ -70,13 +70,13 @@ class PostPage extends Component {
         <header className="postpage-header">
           <div className="title-container">
             <h2>{this.state.post.name}</h2>
-            <Fab color="primary" aria-label="Add" size="large" className={classes.fab} component={Link} to="/postform">
+            <Fab color="secondary" aria-label="Add" size="large" className={classes.fab} component={Link} to="/postform">
               <AddIcon />
             </Fab>
-            <Fab color="secondary" aria-label="Edit" className={classes.fab} component={Link} to='/editform'>
+            <Fab aria-label="Edit" color='primary' className={classes.fab} component={Link} to='/editform'>
               <EditIcon></EditIcon>
             </Fab>
-            <Fab aria-label="Delete" className={classes.fab} onClick={() => this.deletePost(this.props.match.params.id)}>
+            <Fab aria-label="Delete" color="inherit"className={classes.fab} onClick={() => this.deletePost(this.props.match.params.id)}>
               <DeleteIcon />
             </Fab>
           </div>

@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -159,7 +160,7 @@ class EditForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained"  color="primary" className={classes.button} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
+          <Button variant="contained"  color='primary' className={classes.button} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
         </form>
       </div>
     );
