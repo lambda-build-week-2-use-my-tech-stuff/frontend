@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link, withRouter  } from 'react-router-dom';
+import { Popover } from '@material-ui/core';
 
 class SignUp extends Component {
     state = {
@@ -11,6 +12,7 @@ class SignUp extends Component {
       }
 
     changeHandler = e => this.setState({ [e.target.name]: e.target.value });
+
     submitDataHandler = e => {
         e.preventDefault();
         const userInfo = {
@@ -22,6 +24,7 @@ class SignUp extends Component {
           console.log(res)
           localStorage.setItem('jwt', res.data.token)
           this.props.history.push('/')
+          alert('Successfully Signed Up! You will now be Logged In')
         })
         .catch(err => {
           console.log(err);
@@ -30,12 +33,12 @@ class SignUp extends Component {
   render() {
     return (
       <div className='login'>
-        <form className='loginForm'>
+        <form className='loginForm' onSubmit={this.submitDataHandler} >
             <h2 className='logo'>mystuff</h2>
             <input className='loginInput' name="username" type='text' placeholder='Username' onChange={this.changeHandler} required />
             <input className='loginInput' name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
-            {/*<input className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} required />
-            <input className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} required />*/}
+            <input className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} />
+            <input className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} />
             <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
             <br/>
             <p className='p'>Already Have an Account?</p>
