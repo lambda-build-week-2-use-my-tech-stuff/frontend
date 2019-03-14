@@ -37,7 +37,6 @@ const styles = theme => ({
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
-    this.props = props;
     this.state = {
       isEditing: false,
       user: {
@@ -123,7 +122,6 @@ class ProfilePage extends Component {
         </form>
 
 
-
         {/* <form className='profilePage' >
           {/* <input placeholder='Username' className='inputField' /> */}
           {/* <input placeholder='Name' onChange={this.changeHandler} name="name" value={this.state.profile.name} className='inputField' />
@@ -151,9 +149,8 @@ class ProfilePage extends Component {
   }
 }
 
-
 const ProfilePageStyles = withStyles(styles)(ProfilePage);
-
+             
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
   error: state.error,
