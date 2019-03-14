@@ -104,3 +104,9 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .aTag{
+    color: #2c419b;
+    text-decoration: none;
+    font-weight: bold;
+  }

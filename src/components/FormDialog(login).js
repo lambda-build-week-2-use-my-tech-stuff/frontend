@@ -31,6 +31,7 @@ class FormDialog extends React.Component {
     localStorage.removeItem('jwt');
     localStorage.removeItem('userID');
     this.props.toggleSignedIn();
+    this.props.history.push("/")
   }
 
   signIn = () => {

@@ -18,7 +18,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button'
 import FormDialog from './FormDialog(login)';
-import { searchBar, getPosts } from '../actions';
+import { searchBar, getPosts, toggleSignedIn } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -157,7 +157,7 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}><Link className={classes.profile} to={`/profile/${localStorage.getItem('userID')}`}>Profile</Link></MenuItem>
+        <MenuItem onClick={this.handleMenuClose}>{this.props.signedIn ? <Link className={classes.profile} to={`/profile/${localStorage.getItem('userID')}`}>Profile</Link> : <a className='aTag'>You Must Log In</a>}</MenuItem>
       </Menu>
     );
 
@@ -250,9 +250,12 @@ class PrimarySearchAppBar extends React.Component {
   }
 }
 const styledSearchBar = withStyles(styles)(PrimarySearchAppBar);
+const mapStateToProps = state => ({
+  signedIn: state.signedIn
+})
 
 PrimarySearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default connect(null, { searchBar, getPosts })(styledSearchBar);
+export default connect(mapStateToProps, { searchBar, getPosts, toggleSignedIn })(styledSearchBar);
