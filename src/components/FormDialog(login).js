@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleSignedIn } from '../actions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,6 +15,10 @@ class FormDialog extends React.Component {
     open: false,
   };
 
+  componentDidMount() {
+    this.props.toggleSignedIn();
+  }
+
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -23,7 +29,7 @@ class FormDialog extends React.Component {
 
   logOut = () => {
     localStorage.removeItem('jwt');
-    window.location.reload()
+    this.props.toggleSignedIn();
   }
 
   signIn = () => {
@@ -37,14 +43,14 @@ class FormDialog extends React.Component {
   render() {
     return (
       <div className='signUpBtn'>
-        {localStorage.getItem('jwt') ? <Button variant="outlined" color="inherit" onClick={this.logOut}>
+        {this.props.signedIn ? <Button variant="outlined" color="inherit" onClick={this.logOut}>
           Sign Out
         </Button> :
         <>
-          <Button variant="outlined" color="inherit" onClick={this.handleClickOpen} onClick={this.signIn}>
+          <Button variant="outlined" color="inherit" onClick={this.signIn}>
             Log In
           </Button>
-          <Button variant="outlined" color="inherit" onClick={this.handleClickOpen} onClick={this.signUp}>
+          <Button variant="outlined" color="inherit" onClick={this.signUp}>
             Sign Up
           </Button>
         </> }
@@ -92,4 +98,10 @@ class FormDialog extends React.Component {
     );
   }
 }
-export default withRouter(FormDialog);
+
+const mapStateToProps = state => ({
+  signedIn: state.signedIn
+})
+
+const FormDialogRouter = withRouter(FormDialog);
+export default connect(mapStateToProps, { toggleSignedIn })(FormDialogRouter);

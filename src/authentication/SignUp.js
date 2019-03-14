@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link, withRouter  } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleSignedIn } from '../actions';
 import { Popover } from '@material-ui/core';
 
 class SignUp extends Component {
@@ -23,8 +25,9 @@ class SignUp extends Component {
         .then(res => {
           console.log(res)
           localStorage.setItem('jwt', res.data.token)
-          this.props.history.push('/')
-          alert('Successfully Signed Up! You will now be Logged In')
+          this.props.toggleSignedIn();
+          alert('Successfully Signed Up! You will now be Logged In');
+          this.props.history.push('/');
         })
         .catch(err => {
           console.log(err);
@@ -50,4 +53,6 @@ class SignUp extends Component {
     )
   }
 }
-export default withRouter(SignUp);
+
+const SignUpRouter = withRouter(SignUp);
+export default connect(null, { toggleSignedIn })(SignUpRouter);

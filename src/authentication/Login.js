@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import './login.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { toggleSignedIn } from '../actions';
 import { Link } from 'react-router-dom';
 import SignUp from './SignUp';
-import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
     constructor() {
@@ -26,7 +27,8 @@ class Login extends Component {
         .then(res => {
           console.log(res);
           localStorage.setItem('jwt', res.data.token);
-          this.props.history.push('/')
+          this.props.toggleSignedIn();
+          this.props.history.push('/');
         })
         .catch(err => {
           console.log(err);
@@ -43,7 +45,7 @@ class Login extends Component {
             <input className='loginInput' type='password' placeholder='Password' onChange={this.changePasswordHandler} required />
             <button className='loginBtn'>Log In</button>
             <br/>
-            <p className='p'>Don't Have an Account?</p>
+            <p className='p'>Dont Have an Account?</p>
             <Link to="/signup">
               <p className='signUP'>Sign Up</p>
             </Link>
@@ -66,4 +68,5 @@ class Login extends Component {
 //             <Link to='/signup' className='signUP'>Sign Up</Link>
 //         </form>
 //     </div>
-export default Login;
+
+export default connect(null, { toggleSignedIn })(Login);

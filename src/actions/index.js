@@ -107,6 +107,12 @@ export const editProfile = profile => dispatch => {
 
 export const SEARCH = 'SEARCH';
 
-export const searchBar = post => {
-  return {type: SEARCH, payload: post}
+export const searchBar = search => {
+  return { type: SEARCH, payload: search }
+}
+
+export const SIGNEDIN = 'SIGNEDIN';
+
+export const toggleSignedIn = () => {
+  return { type: SIGNEDIN, payload: localStorage.getItem('jwt') }
 }
