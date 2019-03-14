@@ -157,7 +157,7 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>{this.props.signedIn ? <Link className={classes.profile} to={`/profile/${localStorage.getItem('userID')}`}>Profile</Link> : <a className='aTag'>You Must Log In</a>}</MenuItem>
+        <MenuItem onClick={this.handleMenuClose}><Link className={classes.profile} to={`/profile/${localStorage.getItem('userID')}`}>Profile</Link></MenuItem>
       </Menu>
     );
 
@@ -232,7 +232,7 @@ class PrimarySearchAppBar extends React.Component {
                   onClick={this.handleProfileMenuOpen}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  {this.props.signedIn ? <AccountCircle /> : null }
                 </IconButton>
               </div>
             </div>
