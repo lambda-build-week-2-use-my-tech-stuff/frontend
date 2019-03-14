@@ -132,7 +132,6 @@ class PrimarySearchAppBar extends React.Component {
   };
 
   searchHandler = e => {
-    console.log(this.state)
     this.setState({ ...this.state, [e.target.name]: e.target.value })
   }
 

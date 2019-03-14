@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MediaCard from './MediaCard';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { getProfile, editProfile } from '../actions';
+import { getProfile, editProfile, getPosts, filterProfile } from '../actions';
 import { connect } from 'react-redux';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
@@ -82,6 +82,8 @@ class ProfilePage extends Component {
 
   componentDidMount() {
     this.props.getProfile(this.state.user.id);
+    this.props.getPosts();
+    this.props.filterProfile()
   }
 
   componentDidUpdate(prevProps) {
@@ -95,6 +97,9 @@ class ProfilePage extends Component {
           }
         }
       })
+    }
+    if (prevProps.fetchingPosts && !this.props.fetchingPosts && !this.props.error) {
+      this.props.filterProfile();
     }
   }
 
@@ -126,7 +131,7 @@ class ProfilePage extends Component {
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
-            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Profile Page</h2>
+            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Profile Page</h2>
             <img />
         </div>
         {/* onSubmit={this.editSubmitter} */}
@@ -159,16 +164,13 @@ class ProfilePage extends Component {
 
         {/* /////////////User's Posts */}
         <div className='profilePostHeader'>
-            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Posts</h2>
+            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Posts</h2>
               <Fab aria-label="Add" size="large" className={classes.add} component={Link} to="/postform">
                 <AddIcon />
               </Fab>
         </div>
         <div className='profilePosts' >
-            <MediaCard />
-            <MediaCard />
-            <MediaCard />
-            <MediaCard />
+            {this.props.posts.map(post => <MediaCard key={post._id} />)}
         </div>
        </div>
     )
@@ -176,11 +178,13 @@ class ProfilePage extends Component {
 }
 
 const ProfilePageStyles = withStyles(styles)(ProfilePage);
-             
+
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
   error: state.error,
-  fetchingProfile: state.fetchingProfile
+  fetchingProfile: state.fetchingProfile,
+  posts: state.posts,
+  fetchingPosts: state.fetchingPosts
 })
 
-export default connect(mapStateToProps, { getProfile, editProfile })(ProfilePageStyles);
+export default connect(mapStateToProps, { getProfile, editProfile, getPosts, filterProfile })(ProfilePageStyles);

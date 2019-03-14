@@ -148,3 +148,9 @@ export const SIGNED_IN = "SIGNED_IN";
 export const checkSignIn = () => {
   return {type: SIGNED_IN, payload: localStorage.getItem('jwt') }
 }
+
+export const PROFILE_POSTS = 'PROFILE_POSTS';
+
+export const filterProfile = () => {
+  return {type: PROFILE_POSTS, payload: localStorage.getItem('userID')}
+}
