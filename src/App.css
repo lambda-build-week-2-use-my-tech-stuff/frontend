@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 .App {
   text-align: center;
@@ -97,6 +98,11 @@
 
   .profilePostHeader{
     margin-bottom: 1.5%;
+  }
+
+  .logoLink{
+    font-family: 'Pacifico', cursive;
+    font-size: 1.25rem;
   }
 
   /* .btnContainer{
