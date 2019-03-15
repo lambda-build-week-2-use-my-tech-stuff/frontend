@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PostPage.css';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { getPost, deletePost } from '../../actions';
 import { Link } from 'react-router-dom'
@@ -84,6 +85,15 @@ class PostPage extends Component {
 
   render() {
     const { classes } = this.props;
+    
+    if (this.props.fetchingPost) {
+      return (
+        <div className="loading">
+          <Loader type="Oval" color="#00bfff" height="150" width="100" />
+        </div>
+      )
+    }
+
     return (
       <div className="postpage-container">
         <header className="postpage-header">

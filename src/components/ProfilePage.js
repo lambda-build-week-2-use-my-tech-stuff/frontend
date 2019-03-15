@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
 import MediaCard from './MediaCard';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { getProfile, editProfile, getPosts } from '../actions';
+import { getProfile, editProfile, getPosts, filterProfile } from '../actions';
 import { connect } from 'react-redux';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
@@ -69,12 +70,12 @@ class ProfilePage extends Component {
         email: null,
         id: this.props.match.params.id,
         profile: {
-          firstName: "Name",
+          firstName: "",
           lastName: "",
-          city: "City",
-          state: "State",
-          zip: "Zip",
-          dob: "Date of Birth",
+          city: "",
+          state: "",
+          zip: "",
+          dob: "",
         }
       }
     }
@@ -82,6 +83,7 @@ class ProfilePage extends Component {
 
   componentDidMount() {
     this.props.getProfile(this.state.user.id);
+    this.props.getPosts();
   }
 
   componentDidUpdate(prevProps) {
@@ -95,6 +97,9 @@ class ProfilePage extends Component {
           }
         }
       })
+    }
+    if (prevProps.fetchingPosts && !this.props.fetchingPosts && !this.props.error) {
+      this.props.filterProfile();
     }
   }
 
@@ -129,6 +134,15 @@ class ProfilePage extends Component {
 
   render() {
     const { classes } = this.props;
+
+    if (this.props.fetchingPosts) {
+      return (
+        <div className="loading">
+          <Loader type="Oval" color="#00bfff" height="150" width="100" />
+        </div>
+      )
+    }
+
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
@@ -172,7 +186,7 @@ class ProfilePage extends Component {
         </div>
         
         <div className='profilePosts' >
-            
+            {this.props.profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} id={post._id} />)}
         </div>
        </div>
     )
@@ -180,12 +194,13 @@ class ProfilePage extends Component {
 }
 
 const ProfilePageStyles = withStyles(styles)(ProfilePage);
-             
+
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
   error: state.error,
   fetchingProfile: state.fetchingProfile,
-  posts: state.posts
+  profilePosts: state.profilePosts,
+  fetchingPosts: state.fetchingPosts
 })
 
-export default connect(mapStateToProps, { getProfile, editProfile, getPosts })(ProfilePageStyles);
+export default connect(mapStateToProps, { getProfile, editProfile, getPosts, filterProfile })(ProfilePageStyles);
