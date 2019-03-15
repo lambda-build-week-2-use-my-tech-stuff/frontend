@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MediaCard from './MediaCard';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { getProfile, editProfile } from '../actions';
+import { getProfile, editProfile, getPosts } from '../actions';
 import { connect } from 'react-redux';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Fab from '@material-ui/core/Fab';
@@ -120,6 +120,12 @@ class ProfilePage extends Component {
     this.props.editProfile(profile)
     this.editToggler();
   }
+  // filterPostByUser = () => {
+  //   return this.props.posts.filter(post =>  {
+  //     // console.log(post)
+  //     return post.createdBy === localStorage.getItem('userID')
+  //   }) 
+  // }
 
   render() {
     const { classes } = this.props;
@@ -164,11 +170,9 @@ class ProfilePage extends Component {
                 <AddIcon />
               </Fab>
         </div>
+        
         <div className='profilePosts' >
-            <MediaCard />
-            <MediaCard />
-            <MediaCard />
-            <MediaCard />
+            
         </div>
        </div>
     )
@@ -180,7 +184,8 @@ const ProfilePageStyles = withStyles(styles)(ProfilePage);
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
   error: state.error,
-  fetchingProfile: state.fetchingProfile
+  fetchingProfile: state.fetchingProfile,
+  posts: state.posts
 })
 
-export default connect(mapStateToProps, { getProfile, editProfile })(ProfilePageStyles);
+export default connect(mapStateToProps, { getProfile, editProfile, getPosts })(ProfilePageStyles);
