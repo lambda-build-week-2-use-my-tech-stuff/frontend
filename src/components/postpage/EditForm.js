@@ -140,7 +140,7 @@ class EditForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained"  color='inherit' className={classes.edit} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
+          <Button variant="contained" type="submit" color='inherit' className={classes.edit}>Edit Post</Button>
         </form>
       </div>
     );

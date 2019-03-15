@@ -141,7 +141,7 @@ class PostForm extends Component {
           name="image"
           required
           />
-          <Button variant="contained" className={classes.add} onClick={e => this.addPost(e, this.state.post)}>Add Post</Button>
+          <Button variant="contained" className={classes.add} type="submit">Add Post</Button>
         </form>
       </div>
     );

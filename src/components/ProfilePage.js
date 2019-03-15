@@ -124,7 +124,7 @@ class ProfilePage extends Component {
         {/* /////////////User's Posts */}
         <div className='profilePostHeader'>
             <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Posts</h2>
-              <Fab aria-label="Add" size="large" className={classes.add} component={Link} to="/postform">
+              <Fab aria-label="Add" size="large" color="primary" className={classes.add} component={Link} to="/postform">
                 <AddIcon />
               </Fab>
         </div>
@@ -146,10 +146,9 @@ const styles = theme => ({
   },
   add: {
     margin: theme.spacing.unit,
-    backgroundColor: '#24dc8e',
     color: 'white',
     '&:hover': {
-      backgroundColor: fade('#24dc8e', .75),
+      backgroundColor: fade('#0087ea', .75),
     },
   },
   edit: {

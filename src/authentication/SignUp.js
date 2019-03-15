@@ -17,7 +17,6 @@ class SignUp extends Component {
 
     changeHandler = e => {
       e.preventDefault();
-      console.log(this.state)
       this.setState({
         userInfo: {
           ...this.state.userInfo,

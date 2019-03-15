@@ -20,8 +20,7 @@ function MediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
-      <Link to={`/postpages/${props.id}`}>
-        <CardActionArea>
+        <CardActionArea component={Link} to={`/postpages/${props.id}`}>
           <CardMedia
             className={classes.media}
             image=""
@@ -36,7 +35,6 @@ function MediaCard(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-      </Link>
       <CardActions>
         <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
