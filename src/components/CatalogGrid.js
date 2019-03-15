@@ -47,6 +47,7 @@ class AdvancedGridList extends Component {
               <GridListTileBar
                 title={post.postTitle}
                 titlePosition="top"
+                subtitle={post.city}
                 actionIcon={
                   <IconButton className={classes.icon}>
                   <StarBorderIcon />
