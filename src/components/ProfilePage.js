@@ -11,56 +11,6 @@ import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-  add: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#24dc8e',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#24dc8e', .75),
-    },
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-   button: {
-    margin: theme.spacing.unit,
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-});
-
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -129,7 +79,7 @@ class ProfilePage extends Component {
   //   return this.props.posts.filter(post =>  {
   //     // console.log(post)
   //     return post.createdBy === localStorage.getItem('userID')
-  //   }) 
+  //   })
   // }
 
   render() {
@@ -184,7 +134,7 @@ class ProfilePage extends Component {
                 <AddIcon />
               </Fab>
         </div>
-        
+
         <div className='profilePosts' >
             {this.props.profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} id={post._id} />)}
         </div>
@@ -193,7 +143,55 @@ class ProfilePage extends Component {
   }
 }
 
-const ProfilePageStyles = withStyles(styles)(ProfilePage);
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  add: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#24dc8e',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#24dc8e', .75),
+    },
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+});
 
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
@@ -203,4 +201,5 @@ const mapStateToProps = state => ({
   fetchingPosts: state.fetchingPosts
 })
 
+const ProfilePageStyles = withStyles(styles)(ProfilePage);
 export default connect(mapStateToProps, { getProfile, editProfile, getPosts, filterProfile })(ProfilePageStyles);

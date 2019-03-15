@@ -8,34 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-   button: {
-    margin: theme.spacing.unit,
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-});
-
 class Login extends Component {
     state = {
       userInfo: {
@@ -84,16 +56,33 @@ class Login extends Component {
   }
 }
 
-// <div className='login'>
-//         <form className='loginForm' onSubmit={this.submitDataHandler}>
-//             <h2 className='logo'>mystuff</h2>
-//             <input className='loginInput' type='text' placeholder='Username' onChange={this.changeUserNameHandler} required />
-//             <input className='loginInput' type='password' placeholder='Password' onChange={this.changePasswordHandler} required />
-//             <button className='loginBtn'>Log In</button>
-//             <br/>
-//             <p>Dont Have an Account?</p>
-//             <Link to='/signup' className='signUP'>Sign Up</Link>
-//         </form>
-//     </div>
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+});
+
 const LoginFormStyles = withStyles(styles)(Login);
 export default connect(null, { toggleSignedIn })(LoginFormStyles);

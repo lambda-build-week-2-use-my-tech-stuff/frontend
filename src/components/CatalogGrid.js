@@ -12,29 +12,6 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import PrimarySearchAppBar from './PrimarySearchAppBar';
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    width: 1762,
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: 'translateZ(0)',
-  },
-  titleBar: {
-    background:
-      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
-  icon: {
-    color: 'white',
-  },
-});
-
 class AdvancedGridList extends Component {
 
   componentDidMount() {
@@ -89,7 +66,28 @@ class AdvancedGridList extends Component {
   }
 }
 
-const styledComponent = withStyles(styles)(AdvancedGridList);
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: 1762,
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: 'translateZ(0)',
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+  icon: {
+    color: 'white',
+  },
+});
 
 const mapStateToProps = state => ({
   posts: state.posts,
@@ -101,5 +99,5 @@ const mapStateToProps = state => ({
 AdvancedGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
+const styledComponent = withStyles(styles)(AdvancedGridList);
 export default connect(mapStateToProps, { getPosts })(styledComponent)

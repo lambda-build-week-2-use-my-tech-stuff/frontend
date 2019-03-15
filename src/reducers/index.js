@@ -83,8 +83,7 @@ const reducer = (state = initialState, action) => {
     case DELETE_POST_SUCCESS:
     return {
       ...state,
-      deletingPost: false,
-      post: null
+      deletingPost: false
     }
     case DELETE_POST_FAILURE:
     return {

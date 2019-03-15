@@ -16,26 +16,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const styles = {
-  card: {
-    width: 342.5,
-  },
-  media: {
-    height: 140,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  link: {
-   textDecoration: "none",
-   color: "black",
-  },
-};
-
 function MediaCard(props) {
   const { classes } = props;
   return (
@@ -68,6 +48,26 @@ function MediaCard(props) {
     </Card>
   );
 }
+
+const styles = {
+  card: {
+    width: 342.5,
+  },
+  media: {
+    height: 140,
+    paddingTop: '56.25%', // 16:9
+  },
+  actions: {
+    display: 'flex',
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+  link: {
+   textDecoration: "none",
+   color: "black",
+  },
+};
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,

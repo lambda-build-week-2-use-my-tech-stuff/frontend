@@ -10,31 +10,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-const styles = theme => ({
-  fab: {
-    margin: theme.spacing.unit,
-  },
-  extendedIcon: {
-    marginRight: theme.spacing.unit,
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-  remove: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#dc3545',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#dc3545', .75),
-    },
-  }
-});
-
 class PostPage extends Component {
   state = {
     post: {
@@ -55,7 +30,7 @@ class PostPage extends Component {
     else {
       this.setState({ post: {
         name: this.props.post.postTitle,
-        price: 1121,
+        price: this.props.post.price,
         category: this.props.post.category,
         description: this.props.post.description,
         location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`,
@@ -85,7 +60,7 @@ class PostPage extends Component {
 
   render() {
     const { classes } = this.props;
-    
+
     if (this.props.fetchingPost) {
       return (
         <div className="loading">
@@ -120,6 +95,31 @@ class PostPage extends Component {
     )
   }
 }
+
+const styles = theme => ({
+  fab: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+  remove: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#dc3545',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#dc3545', .75),
+    },
+  }
+});
 
 const mapStateToProps = state => ({
   post: state.post,
