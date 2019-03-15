@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
 import PropTypes from 'prop-types';
@@ -50,6 +51,14 @@ class AdvancedGridList extends Component {
 
   render() {
     const { classes, posts } = this.props;
+
+    if (this.props.fetchingPosts) {
+      return (
+        <div className="loading">
+          <Loader type="Oval" color="#00bfff" height="150" width="100" />
+        </div>
+      )
+    }
 
     return (
       <>

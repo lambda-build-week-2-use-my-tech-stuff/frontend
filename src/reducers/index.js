@@ -2,6 +2,7 @@ import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE, GET_POST, GET_POST_SUC
 
 const initialState = {
   posts: [],
+  profilePosts: [],
   post: {},
   fetchingPosts: false,
   fetchingPost: false,
@@ -177,7 +178,7 @@ const reducer = (state = initialState, action) => {
     case PROFILE_POSTS:
     return {
       ...state,
-      posts: state.posts.filter(post => post.createdBy === action.payload)
+      profilePosts: state.posts.filter(post => post.createdBy === action.payload)
     }
 
     default:
