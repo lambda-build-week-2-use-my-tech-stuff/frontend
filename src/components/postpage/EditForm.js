@@ -17,7 +17,7 @@ class EditForm extends Component {
       price: this.props.post.price,
       description: this.props.post.description,
       category: this.props.post.category,
-      image: this.props.post.image,
+      postImage: this.props.post.postImage,
       id: this.props.post._id
     }
   }
@@ -136,8 +136,8 @@ class EditForm extends Component {
           margin="normal"
           variant="filled"
           onChange={this.handleInputChange}
-          value={this.state.post.image}
-          name="image"
+          value={this.state.post.postImage}
+          name="postImage"
           required
           />
           <Button variant="contained" type="submit" color='inherit' className={classes.edit}>Edit Post</Button>

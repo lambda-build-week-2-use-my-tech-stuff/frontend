@@ -17,7 +17,7 @@ class PostForm extends Component {
       price: '',
       description: '',
       category: '',
-      image: '',
+      postImage: '',
       createdBy: localStorage.getItem('userID')
     }
   }
@@ -137,8 +137,8 @@ class PostForm extends Component {
           margin="normal"
           variant="filled"
           onChange={this.handleInputChange}
-          value={this.state.post.image}
-          name="image"
+          value={this.state.post.postImage}
+          name="postImage"
           required
           />
           <Button variant="contained" className={classes.add} type="submit">Add Post</Button>

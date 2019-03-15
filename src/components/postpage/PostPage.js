@@ -18,7 +18,7 @@ class PostPage extends Component {
       category: '',
       location: '',
       description: '',
-      image: '',
+      postImage: '',
       createdBy: ''
     }
   }
@@ -34,6 +34,7 @@ class PostPage extends Component {
         category: this.props.post.category,
         description: this.props.post.description,
         location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`,
+        postImage: this.props.post.postImage,
         createdBy: this.props.post.createdBy
       }})
     }
@@ -52,6 +53,7 @@ class PostPage extends Component {
         price: post.price,
         category: post.category,
         description: post.description,
+        postImage: post.postImage,
         location: `${post.city}, ${post.state} ${post.zip}`,
         createdBy: post.createdBy
       } })
@@ -88,7 +90,7 @@ class PostPage extends Component {
           <h4>{this.state.post.location}</h4>
         </header>
         <article className="postpage-content">
-          <img src={this.state.post.image} alt={this.state.post.name} />
+          <img src={this.state.post.postImage} alt={this.state.post.name} />
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
       </div>
