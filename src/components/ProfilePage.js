@@ -170,7 +170,7 @@ class ProfilePage extends Component {
               </Fab>
         </div>
         <div className='profilePosts' >
-            {this.props.posts.map(post => <MediaCard key={post._id} />)}
+            {this.props.posts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} id={post._id} />)}
         </div>
        </div>
     )
