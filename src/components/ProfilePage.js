@@ -11,56 +11,6 @@ import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-  add: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#24dc8e',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#24dc8e', .75),
-    },
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-   button: {
-    margin: theme.spacing.unit,
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-});
-
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -125,12 +75,6 @@ class ProfilePage extends Component {
     this.props.editProfile(profile)
     this.editToggler();
   }
-  // filterPostByUser = () => {
-  //   return this.props.posts.filter(post =>  {
-  //     // console.log(post)
-  //     return post.createdBy === localStorage.getItem('userID')
-  //   }) 
-  // }
 
   render() {
     const { classes } = this.props;
@@ -146,7 +90,7 @@ class ProfilePage extends Component {
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
-            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Profile Page</h2>
+            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Profile Page</h2>
             <img />
         </div>
         {/* onSubmit={this.editSubmitter} */}
@@ -179,21 +123,68 @@ class ProfilePage extends Component {
 
         {/* /////////////User's Posts */}
         <div className='profilePostHeader'>
-            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Posts</h2>
-              <Fab aria-label="Add" size="large" className={classes.add} component={Link} to="/postform">
+            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Posts</h2>
+              <Fab aria-label="Add" size="large" color="primary" className={classes.add} component={Link} to="/postform">
                 <AddIcon />
               </Fab>
         </div>
-        
+
         <div className='profilePosts' >
-            {this.props.profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} id={post._id} />)}
+            {this.props.profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} image={post.postImage} id={post._id} />)}
         </div>
        </div>
     )
   }
 }
 
-const ProfilePageStyles = withStyles(styles)(ProfilePage);
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  add: {
+    margin: theme.spacing.unit,
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#0087ea', .75),
+    },
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+});
 
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
@@ -203,4 +194,5 @@ const mapStateToProps = state => ({
   fetchingPosts: state.fetchingPosts
 })
 
+const ProfilePageStyles = withStyles(styles)(ProfilePage);
 export default connect(mapStateToProps, { getProfile, editProfile, getPosts, filterProfile })(ProfilePageStyles);

@@ -16,36 +16,16 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const styles = {
-  card: {
-    width: 342.5,
-  },
-  media: {
-    height: 140,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  link: {
-   textDecoration: "none",
-   color: "black",
-  },
-};
-
 function MediaCard(props) {
   const { classes } = props;
   return (
     <Card className={classes.card}>
-      <Link to={`/postpages/${props.id}`}>
-        <CardActionArea>
+        <CardActionArea component={Link} to={`/postpages/${props.id}`}>
           <CardMedia
+            component="img"
             className={classes.media}
-            image=""
-            title=""
+            image={props.image}
+            title={props.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -56,8 +36,7 @@ function MediaCard(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-      </Link>
-      <CardActions>
+      <CardActions className={classes.actions}>
         <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
@@ -68,6 +47,21 @@ function MediaCard(props) {
     </Card>
   );
 }
+
+const styles = {
+  card: {
+    width: 342.5,
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  },
+  media: {
+    height: 202,
+    width: 342.5,
+  },
+};
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -7,35 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
-
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  dense: {
-    marginTop: 16,
-  },
-  menu: {
-    width: 200,
-  },
-   button: {
-    margin: theme.spacing.unit,
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
-});
-
 class EditForm extends Component {
   state = {
     post: {
@@ -46,7 +17,7 @@ class EditForm extends Component {
       price: this.props.post.price,
       description: this.props.post.description,
       category: this.props.post.category,
-      image: this.props.post.image,
+      postImage: this.props.post.postImage,
       id: this.props.post._id
     }
   }
@@ -165,16 +136,44 @@ class EditForm extends Component {
           margin="normal"
           variant="filled"
           onChange={this.handleInputChange}
-          value={this.state.post.image}
-          name="image"
+          value={this.state.post.postImage}
+          name="postImage"
           required
           />
-          <Button variant="contained"  color='inherit' className={classes.edit} onClick={e => this.editPost(e, this.state.post)}>Edit Post</Button>
+          <Button variant="contained" type="submit" color='inherit' className={classes.edit}>Edit Post</Button>
         </form>
       </div>
     );
   }
 }
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  dense: {
+    marginTop: 16,
+  },
+  menu: {
+    width: 200,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+  edit: {
+    margin: theme.spacing.unit,
+    backgroundColor: '#ffa500',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: fade('#ffa500', .75),
+    },
+  },
+});
 
 const mapStateToProps = state => ({
   post: state.post

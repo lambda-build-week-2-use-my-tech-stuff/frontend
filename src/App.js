@@ -6,7 +6,6 @@ import CatalogGrid from './components/CatalogGrid';
 import ProfilePage from './components/ProfilePage';
 import PostForm from './components/postpage/PostForm';
 import EditForm from './components/postpage/EditForm';
-import authenticate from './authentication/authenticate';
 import SignUp from './authentication/SignUp';
 import Login from './authentication/Login';
 import PrimarySearchAppBar from './components/PrimarySearchAppBar';
