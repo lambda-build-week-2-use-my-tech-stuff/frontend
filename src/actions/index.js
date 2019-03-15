@@ -144,9 +144,13 @@ export const toggleSignedIn = userInfo => dispatch => {
 }
 
 export const SIGNED_IN = "SIGNED_IN";
+export const SIGNED_OUT = "SIGNED_OUT";
 
 export const checkSignIn = () => {
-  return {type: SIGNED_IN, payload: localStorage.getItem('jwt') }
+  if (localStorage.getItem('jwt')) {
+    return {type: SIGNED_IN }  
+  }
+  return {type: SIGNED_OUT}
 }
 
 export const PROFILE_POSTS = 'PROFILE_POSTS';
