@@ -125,6 +125,12 @@ class ProfilePage extends Component {
     this.props.editProfile(profile)
     this.editToggler();
   }
+  // filterPostByUser = () => {
+  //   return this.props.posts.filter(post =>  {
+  //     // console.log(post)
+  //     return post.createdBy === localStorage.getItem('userID')
+  //   }) 
+  // }
 
   render() {
     const { classes } = this.props;
@@ -178,6 +184,7 @@ class ProfilePage extends Component {
                 <AddIcon />
               </Fab>
         </div>
+        
         <div className='profilePosts' >
             {this.props.profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} id={post._id} />)}
         </div>

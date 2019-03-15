@@ -202,7 +202,7 @@ class PrimarySearchAppBar extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              <Link to='/' className='techLink' >MyStuff Catalog</Link>
+              <Link to='/' className='techLink' ><span className='logoLink'>mystuff</span> Catalog</Link>
             </Typography>
             <div className='searchBar'>
               <div className={classes.search}>
