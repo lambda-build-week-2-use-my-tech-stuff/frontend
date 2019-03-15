@@ -33,12 +33,11 @@ class Login extends Component {
 
   render() {
     return (
-      <>
       <div className='login'>
         <form className='loginForm' onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
             <h2 className='logo'>mystuff</h2>
-            <TextField className='loginInput'  name="email" type='text' placeholder='Email' onChange={this.changeHandler} required />
-            <TextField className='loginInput'  name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
+            <TextField className='loginInput' name="email" type='text' placeholder='Email' onChange={this.changeHandler} value={this.state.userInfo.email} required />
+            <TextField className='loginInput' name="password" type='password' placeholder='Password' value={this.state.userInfo.password} onChange={this.changeHandler} required />
             <br />
             <button className='loginBtn'>Log In</button>
             <br/>
@@ -47,10 +46,8 @@ class Login extends Component {
             <Link to="/signup">
               <p className='signUP'>Sign Up</p>
             </Link>
-        </form>
+          </form>
         </div>
-
-        </>
     )
   }
 }

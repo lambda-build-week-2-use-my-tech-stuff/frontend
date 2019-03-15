@@ -37,10 +37,10 @@ class SignUp extends Component {
       <div className='login'>
         <form className='loginForm' onSubmit={e => this.submitDataHandler(e, this.state.userInfo)} >
             <h2 className='logo'>mystuff</h2>
-            <TextField className='loginInput' name="email" type='text' placeholder='Email' onChange={this.changeHandler} required />
-            <TextField className='loginInput' name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
+            <TextField className='loginInput' name="email" type='text' placeholder='Email' onChange={this.changeHandler} value={this.state.userInfo.email} required />
+            <TextField className='loginInput' name="password" value={this.state.userInfo.password} type='password' placeholder='Password' onChange={this.changeHandler} required />
             <br />
-            <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
+            <button className='loginBtn'>Sign Up</button>
             <br/>
             <p className='p'>Already Have an Account?</p>
             <br />
