@@ -22,9 +22,10 @@ function MediaCard(props) {
     <Card className={classes.card}>
         <CardActionArea component={Link} to={`/postpages/${props.id}`}>
           <CardMedia
+            component="img"
             className={classes.media}
-            image=""
-            title=""
+            image={props.image}
+            title={props.title}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
@@ -50,10 +51,11 @@ function MediaCard(props) {
 const styles = {
   card: {
     width: 342.5,
+    marginBottom: 10
   },
   media: {
-    height: 140,
-    paddingTop: '56.25%', // 16:9
+    height: 202,
+    width: 342.5,
   },
   actions: {
     display: 'flex',

@@ -43,7 +43,7 @@ class AdvancedGridList extends Component {
         <GridList cellHeight={300} spacing={1} className={classes.gridList}>
         {posts.map(post => (
           <GridListTile key={post._id} cols={.5} rows={1} component={Link} to={`/postpages/${post._id}`}>
-            <img src={post.postImage} alt={post.item_name} />
+            <img src={post.postImage} alt={post.item_name}  width="432" />
               <GridListTileBar
                 title={post.postTitle}
                 titlePosition="top"
