@@ -3,7 +3,6 @@ import './login.css';
 import { connect } from 'react-redux';
 import { toggleSignedIn } from '../actions';
 import { Link } from 'react-router-dom';
-import SignUp from './SignUp';
 import TextField from '@material-ui/core/TextField';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';

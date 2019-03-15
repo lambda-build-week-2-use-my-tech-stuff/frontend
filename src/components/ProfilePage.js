@@ -75,12 +75,6 @@ class ProfilePage extends Component {
     this.props.editProfile(profile)
     this.editToggler();
   }
-  // filterPostByUser = () => {
-  //   return this.props.posts.filter(post =>  {
-  //     // console.log(post)
-  //     return post.createdBy === localStorage.getItem('userID')
-  //   })
-  // }
 
   render() {
     const { classes } = this.props;
@@ -96,7 +90,7 @@ class ProfilePage extends Component {
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
-            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Profile Page</h2>
+            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Profile Page</h2>
             <img />
         </div>
         {/* onSubmit={this.editSubmitter} */}
@@ -129,7 +123,7 @@ class ProfilePage extends Component {
 
         {/* /////////////User's Posts */}
         <div className='profilePostHeader'>
-            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}'s Posts</h2>
+            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Posts</h2>
               <Fab aria-label="Add" size="large" className={classes.add} component={Link} to="/postform">
                 <AddIcon />
               </Fab>

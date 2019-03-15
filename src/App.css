@@ -38,7 +38,7 @@
     border-radius: 8px;
     height: 35px;
   }
-  
+
   .profileContainer{
     margin: 2%;
   }
@@ -63,14 +63,13 @@
   }
 
   .userNameTitle{
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .profilePageHeader{
     display: flex;
-    flex-direction: row-reverse;
     max-width: 450px;
-    margin: auto;
+    margin: 0 auto;
   }
 
   .techLink{
@@ -90,10 +89,6 @@
 
   .btnOrange{
     color:#ffa500;
-  }
-
-  .fabPost{
-    margin-top: 4%;
   }
 
   .profilePostHeader{

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toggleSignedIn } from '../actions';
+import { signUp } from '../actions';
 import { Popover } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -11,14 +11,13 @@ class SignUp extends Component {
     state = {
         userInfo: {
           "email": "",
-          "password": "",
-          "dob": "",
-          "location": ""
+          "password": ""
         }
       }
 
     changeHandler = e => {
       e.preventDefault();
+      console.log(this.state)
       this.setState({
         userInfo: {
           ...this.state.userInfo,
@@ -29,7 +28,7 @@ class SignUp extends Component {
 
     submitDataHandler = (e, userInfo) => {
       e.preventDefault();
-      this.props.toggleSignedIn(userInfo);
+      this.props.signUp(userInfo);
       alert('Successfully Signed Up! You will now be Logged In');
       this.props.history.push('/');
     }
@@ -38,10 +37,8 @@ class SignUp extends Component {
       <div className='login'>
         <form className='loginForm' onSubmit={e => this.submitDataHandler(e, this.state.userInfo)} >
             <h2 className='logo'>mystuff</h2>
-            <TextField className='loginInput' name="email" type='text' placeholder='Username' onChange={this.changeHandler} required />
+            <TextField className='loginInput' name="email" type='text' placeholder='Email' onChange={this.changeHandler} required />
             <TextField className='loginInput' name="password" type='password' placeholder='Password' onChange={this.changeHandler} required />
-            <TextField className='loginInput' type='text' placeholder='Date of Birth' onChange={this.changeHandler} />
-            <TextField className='loginInput' type='text' placeholder='Location' onChange={this.changeHandler} />
             <br />
             <button className='loginBtn'  onClick={this.submitDataHandler}>Sign Up</button>
             <br/>
@@ -84,4 +81,5 @@ const styles = theme => ({
   },
 });
 
-export default connect(null, { toggleSignedIn })(SignUp);
+const SignUpFormStyles = withStyles(styles)(SignUp);
+export default connect(null, { signUp })(SignUpFormStyles);

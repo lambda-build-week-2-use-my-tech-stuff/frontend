@@ -73,6 +73,14 @@ class PostPage extends Component {
       <div className="postpage-container">
         <header className="postpage-header">
           <div className="title-container">
+            {this.state.post.createdBy === localStorage.getItem('userID') && <>
+              <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
+                <EditIcon></EditIcon>
+              </Fab>
+              <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
+                <DeleteIcon />
+              </Fab>
+            </>}
             <h2>{this.state.post.name}</h2>
           </div>
           <h3>${this.state.post.price}</h3>
@@ -83,14 +91,6 @@ class PostPage extends Component {
           <img src={this.state.post.image} alt={this.state.post.name} />
           <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </article>
-          {this.state.post.createdBy === localStorage.getItem('userID') && <div className='fabPost'>
-            <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
-              <EditIcon></EditIcon>
-            </Fab>
-            <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
-              <DeleteIcon />
-            </Fab>
-          </div>}
       </div>
     )
   }
