@@ -36,7 +36,7 @@ function MediaCard(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-      <CardActions>
+      <CardActions className={classes.actions}>
         <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
@@ -51,21 +51,15 @@ function MediaCard(props) {
 const styles = {
   card: {
     width: 342.5,
-    marginBottom: 10
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   },
   media: {
     height: 202,
     width: 342.5,
-  },
-  actions: {
-    display: 'flex',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  link: {
-   textDecoration: "none",
-   color: "black",
   },
 };
 
