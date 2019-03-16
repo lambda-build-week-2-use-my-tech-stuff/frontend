@@ -15,15 +15,19 @@ import PrimarySearchAppBar from './PrimarySearchAppBar';
 class AdvancedGridList extends Component {
 
   componentDidMount() {
-    if (this.props.posts.length === 0) {
+    // if (this.props.posts.length === 0) {
       this.props.getPosts();
-    }
+    // }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.deletingPost && !this.props.deletingPost && !this.props.error) {
       this.props.getPosts();
     }
+  }
+
+  filteredPosts = () => {
+    
   }
 
   render() {
