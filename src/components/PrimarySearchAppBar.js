@@ -30,10 +30,10 @@ class PrimarySearchAppBar extends React.Component {
     searched: ''
   };
 
-  componentDidMount() {
-    this.setState({ catalogCards: this.props.allPosts})
-    console.log(this.state.catalogCards)
-  }
+  // componentDidMount() {
+  //   this.setState({ catalogCards: this.props.allPosts})
+  //   console.log(this.state.catalogCards)
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searched !== this.state.searched) {
@@ -65,6 +65,13 @@ class PrimarySearchAppBar extends React.Component {
 
   searchSubmit = e => {
     e.preventDefault();
+<<<<<<< HEAD
+=======
+    // if (searchedPost.length === 0) {
+    //   this.props.getPosts();
+    // }
+    this.props.searchBar(searchedPost);
+>>>>>>> 18719cfaeac12b2e5069dc2e309b1955ebb05785
   }
 
   render() {
@@ -151,14 +158,14 @@ class PrimarySearchAppBar extends React.Component {
             <div className={classes.sectionDesktop}>
               <div className='rightNav'>
               <FormDialog />
-                <IconButton
+                {this.props.signedIn ? <IconButton
                   aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                   aria-haspopup="true"
                   onClick={this.handleProfileMenuOpen}
                   color="inherit"
                 >
-                  {this.props.signedIn ? <AccountCircle /> : null }
-                </IconButton>
+                 <AccountCircle />
+                </IconButton> : null }
               </div>
             </div>
             <div className={classes.sectionMobile}>
