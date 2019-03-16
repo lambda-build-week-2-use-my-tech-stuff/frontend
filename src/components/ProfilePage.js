@@ -32,8 +32,38 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
-    this.props.getProfile(this.state.user.id);
-    this.props.getPosts();
+    if (this.props.currentProfile) {
+      if (this.state.user.id !== this.props.currentProfile._id) {
+        this.props.getProfile(this.state.user.id);
+      }
+      else {
+        this.setState({ user: {
+          ...this.state.user,
+          profile: {
+          firstName: this.props.currentProfile.profile.firstName,
+          lastName: this.props.currentProfile.profile.lastName,
+          city: this.props.currentProfile.profile.city,
+          state: this.props.currentProfile.profile.state,
+          zip: this.props.currentProfile.profile.zip,
+          dob: this.props.currentProfile.profile.dob
+        }
+        }})
+      }
+    }
+    if (!this.props.currentProfile) {
+      this.props.getProfile(this.state.user.id);
+    }
+    if (this.props.posts.length === 0) {
+      this.props.getPosts();
+    }
+    if (this.props.profilePosts.length === 0) {
+      this.props.filterProfile(this.state.user.id);
+    }
+    if (this.props.profilePosts.length !== 0) {
+      if (this.props.profilePosts[0].createdBy !== this.state.user.id) {
+        this.props.filterProfile(this.state.user.id)
+      }
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -49,7 +79,7 @@ class ProfilePage extends Component {
       })
     }
     if (prevProps.fetchingPosts && !this.props.fetchingPosts && !this.props.error) {
-      this.props.filterProfile();
+      this.props.filterProfile(this.state.user.id);
     }
   }
 
@@ -189,6 +219,7 @@ const styles = theme => ({
 const mapStateToProps = state => ({
   currentProfile: state.currentProfile,
   error: state.error,
+  posts: state.posts,
   fetchingProfile: state.fetchingProfile,
   profilePosts: state.profilePosts,
   fetchingPosts: state.fetchingPosts

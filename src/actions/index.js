@@ -172,6 +172,6 @@ export const checkSignIn = () => {
 
 export const PROFILE_POSTS = 'PROFILE_POSTS';
 
-export const filterProfile = () => {
-  return {type: PROFILE_POSTS, payload: localStorage.getItem('userID')}
+export const filterProfile = userID => {
+  return {type: PROFILE_POSTS, payload: userID}
 }

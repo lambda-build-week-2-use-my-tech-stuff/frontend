@@ -38,7 +38,6 @@ class PrimarySearchAppBar extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searched !== this.state.searched) {
       this.props.searchBar(this.state.searched);
-      console.log(this.state.searched);
     }
   }
 
@@ -60,12 +59,12 @@ class PrimarySearchAppBar extends React.Component {
   };
 
   searchHandler = e => {
+    e.preventDefault();
     this.setState({ ...this.state, [e.target.name]: e.target.value })
   }
 
-  searchSubmit = (e, searchedPost) => {
+  searchSubmit = e => {
     e.preventDefault();
-    this.props.searchBar(searchedPost);
   }
 
   render() {
@@ -134,7 +133,7 @@ class PrimarySearchAppBar extends React.Component {
                 <div className={classes.searchIcon}>
                   <SearchIcon />
                 </div>
-                <form onChange={e => this.searchSubmit(e, this.state.searched)} onSubmit={e => this.searchSubmit(e, this.state.searched)}>
+                <form onSubmit={this.searchSubmit}>
                   <InputBase
                     name="searched"
                     value={this.state.searched}
