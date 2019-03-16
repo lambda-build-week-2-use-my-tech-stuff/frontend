@@ -24,6 +24,10 @@ class AdvancedGridList extends Component {
     }
   }
 
+  filteredPosts = () => {
+    
+  }
+
   render() {
     const { classes, posts, searchedPosts } = this.props;
 
