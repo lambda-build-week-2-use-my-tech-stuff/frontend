@@ -15,9 +15,7 @@ import PrimarySearchAppBar from './PrimarySearchAppBar';
 class AdvancedGridList extends Component {
 
   componentDidMount() {
-    if (this.props.posts.length === 0) {
-      this.props.getPosts();
-    }
+    this.props.getPosts();
   }
 
   componentDidUpdate(prevProps) {
@@ -27,7 +25,7 @@ class AdvancedGridList extends Component {
   }
 
   render() {
-    const { classes, posts } = this.props;
+    const { classes, posts, searchedPosts } = this.props;
 
     if (this.props.fetchingPosts) {
       return (
@@ -41,7 +39,23 @@ class AdvancedGridList extends Component {
       <>
       <div className={classes.root}>
         <GridList cellHeight={300} spacing={1} className={classes.gridList}>
-        {posts.map(post => (
+        {this.props.searchInput.length > 0 ? searchedPosts.map(post => (
+          <GridListTile key={post._id} cols={.5} rows={1} component={Link} to={`/postpages/${post._id}`}>
+            <img src={post.postImage} alt={post.item_name}  width="432" />
+              <GridListTileBar
+                title={post.postTitle}
+                titlePosition="top"
+                subtitle={post.city}
+                actionIcon={
+                  <IconButton className={classes.icon}>
+                  <StarBorderIcon />
+                  </IconButton>
+                }
+                actionPosition="left"
+                className={classes.titleBar}
+              />
+          </GridListTile>
+          )) : posts.map(post => (
           <GridListTile key={post._id} cols={.5} rows={1} component={Link} to={`/postpages/${post._id}`}>
             <img src={post.postImage} alt={post.item_name}  width="432" />
               <GridListTileBar
@@ -90,6 +104,8 @@ const styles = theme => ({
 
 const mapStateToProps = state => ({
   posts: state.posts,
+  searchedPosts: state.searchedPosts,
+  searchInput: state.searchInput,
   fetchingPosts: state.fetchingPosts,
   error: state.error,
   deletingPost: state.deletingPost

@@ -59,9 +59,6 @@ class PrimarySearchAppBar extends React.Component {
   searchSubmit = (e, searchedPost) => {
     e.preventDefault();
     this.props.searchBar(searchedPost);
-    if (searchedPost.length === 0) {
-      this.props.getPosts();
-    }
   }
 
   render() {

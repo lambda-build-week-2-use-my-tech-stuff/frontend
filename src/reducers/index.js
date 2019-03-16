@@ -2,8 +2,10 @@ import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE, GET_POST, GET_POST_SUC
 
 const initialState = {
   posts: [],
+  searchedPosts: [],
   profilePosts: [],
   post: {},
+  searchInput: '',
   fetchingPosts: false,
   fetchingPost: false,
   addingPost: false,
@@ -148,7 +150,8 @@ const reducer = (state = initialState, action) => {
     case SEARCH:
     return {
       ...state,
-      posts: state.posts.filter(post => post["postTitle"].toLowerCase().includes(action.payload.toLowerCase()))
+      searchedPosts: state.posts.filter(post => post["postTitle"].toLowerCase().includes(action.payload.toLowerCase())),
+      searchInput: action.payload
     }
     case SIGN_IN || SIGN_UP:
     return {
