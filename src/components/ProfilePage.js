@@ -108,6 +108,7 @@ class ProfilePage extends Component {
 
   render() {
     const { classes } = this.props;
+    const { firstName, lastName, city, state, zip } = this.state.user.profile;
 
     if (this.props.fetchingPosts) {
       return (
@@ -126,15 +127,15 @@ class ProfilePage extends Component {
         {/* onSubmit={this.editSubmitter} */}
         <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.user)} >
             {/* <input placeholder='Username/email' className='inputField' /> */}
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='firstName' placeholder='First Name' className='inputField' /> : <p>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='firstName' placeholder='First Name' value={firstName} className='inputField' /> : <p>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}</p>}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='lastName' placeholder='Last Name' className='inputField' /> : null}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='lastName' placeholder='Last Name' value={lastName} className='inputField' /> : null}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='city' placeholder='City' className='inputField' /> : <p>{this.state.user.profile.city}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='city' placeholder='City' value={city} className='inputField' /> : <p>{this.state.user.profile.city}</p>}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='state' placeholder='State' className='inputField' /> : <p>{this.state.user.profile.state}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='state' placeholder='State' value={state} className='inputField' /> : <p>{this.state.user.profile.state}</p>}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='zip' placeholder='ZIP code' className='inputField' /> : <p>{this.state.user.profile.zip}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='zip' placeholder='ZIP code' value={zip} className='inputField' /> : <p>{this.state.user.profile.zip}</p>}
             <br />
             {this.state.isEditing ? <TextField onChange={this.editHandler} name='dob' placeholder='D.O.B.' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
             <br />
