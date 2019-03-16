@@ -15,14 +15,21 @@ class PostPage extends Component {
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
       this.props.getPost(this.props.match.params.id);
+      console.log('fetching post')
     }
   }
 
   shouldComponentUpdate(nextProps) {
-    if (!this.props.fetchingPost && nextProps.fetchingPost) {
+    if (!this.props.fetchingPost && nextProps.fetchingPost && this.props.post._id !== this.props.match.params.id) {
       return false
     }
-    return true
+    if (!this.props.fetchingPost && nextProps.fetchingPost && Object.keys(this.props.post).length !== 0) {
+      return true
+    }
+    else if (!this.props.fetchingPost && nextProps.fetchingPost) {
+      return false
+    }
+      return true
   }
 
   deletePost = id => {
@@ -32,9 +39,10 @@ class PostPage extends Component {
 
   render() {
     const { classes, fetchingPost, post } = this.props;
-    const { category, city, createdBy, description, postImage, postTitle, price, state, zip } = this.props.post
+    const { category, city, createdBy, description, postImage, postTitle, price, state, zip, _id } = this.props.post
 
-     if (Object.keys(post).length !== 0 && !fetchingPost) {
+     if (Object.keys(post).length !== 0 && !fetchingPost && _id === this.props.match.params.id) {
+      console.log('rendering post')
       return (
         <div className="postpage-container">
           <header className="postpage-header">
@@ -60,13 +68,12 @@ class PostPage extends Component {
         </div>
       )
     }
-    else {
+      console.log('loader rendering')
       return (
         <div className="loading">
           <Loader type="Oval" color="#00bfff" height="150" width="100" />
         </div>
       )
-    }
   }
 }
 
