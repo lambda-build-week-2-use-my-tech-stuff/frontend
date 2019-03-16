@@ -35,6 +35,13 @@ class PrimarySearchAppBar extends React.Component {
     console.log(this.state.catalogCards)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searched !== this.state.searched) {
+      this.props.searchBar(this.state.searched);
+      console.log(this.state.searched);
+    }
+  }
+
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
