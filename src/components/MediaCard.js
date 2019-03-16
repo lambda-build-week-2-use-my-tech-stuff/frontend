@@ -36,7 +36,7 @@ function MediaCard(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-      <CardActions className={classes.actions}>
+      <CardActions>
         <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
