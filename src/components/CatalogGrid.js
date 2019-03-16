@@ -15,7 +15,7 @@ class AdvancedGridList extends Component {
 
   componentDidMount() {
     if (this.props.posts.length === 0) {
-      this.props.getPosts();  
+      this.props.getPosts();
     }
   }
 
@@ -23,10 +23,6 @@ class AdvancedGridList extends Component {
     if (prevProps.deletingPost && !this.props.deletingPost && !this.props.error) {
       this.props.getPosts();
     }
-  }
-
-  filteredPosts = () => {
-
   }
 
   render() {

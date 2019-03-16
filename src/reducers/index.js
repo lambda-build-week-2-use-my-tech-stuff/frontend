@@ -153,19 +153,38 @@ const reducer = (state = initialState, action) => {
       searchedPosts: state.posts.filter(post => post["postTitle"].toLowerCase().includes(action.payload.toLowerCase())),
       searchInput: action.payload
     }
-    case SIGN_IN || SIGN_UP:
+    case SIGN_IN:
     return {
       ...state,
       signingIn: true,
       error: null
     }
-    case SIGN_IN_SUCCESS || SIGN_UP_SUCCESS:
+    case SIGN_IN_SUCCESS:
     return {
       ...state,
       signingIn: false,
       signedIn: true
     }
-    case SIGN_IN_FAILURE || SIGN_UP_FAILURE:
+    case SIGN_IN_FAILURE:
+    return {
+      ...state,
+      signingIn: false,
+      signedIn: false,
+      error: action.payload
+    }
+    case SIGN_UP:
+    return {
+      ...state,
+      signingIn: true,
+      error: null
+    }
+    case SIGN_UP_SUCCESS:
+    return {
+      ...state,
+      signingIn: false,
+      signedIn: true
+    }
+    case SIGN_UP_FAILURE:
     return {
       ...state,
       signingIn: false,
