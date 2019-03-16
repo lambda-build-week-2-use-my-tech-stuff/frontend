@@ -91,7 +91,7 @@ class PostPage extends Component {
         </header>
         <article className="postpage-content">
           <img src={this.state.post.postImage} alt={this.state.post.name} />
-          <p>{this.state.post.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>{this.state.post.description}</p>
         </article>
       </div>
     )
