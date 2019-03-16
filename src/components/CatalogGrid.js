@@ -14,9 +14,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 class AdvancedGridList extends Component {
 
   componentDidMount() {
-    // if (this.props.posts.length === 0) {
-      this.props.getPosts();
-    // }
+    this.props.getPosts();
   }
 
   componentDidUpdate(prevProps) {
@@ -26,7 +24,7 @@ class AdvancedGridList extends Component {
   }
 
   filteredPosts = () => {
-    
+
   }
 
   render() {
