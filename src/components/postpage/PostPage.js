@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './PostPage.css';
-import Loader from 'react-loader-spinner';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { getPost, deletePost, handleError } from '../../actions';
 import { Link } from 'react-router-dom'
@@ -75,8 +75,8 @@ class PostPage extends Component {
       )
     }
       return (
-        <div className="loading">
-          <Loader type="Oval" color="#00bfff" height="150" width="100" />
+        <div>
+          <CircularProgress className={classes.progress} color="primary" disableShrink />
         </div>
       )
   }
@@ -85,6 +85,9 @@ class PostPage extends Component {
 const styles = theme => ({
   fab: {
     margin: theme.spacing.unit,
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
   },
   extendedIcon: {
     marginRight: theme.spacing.unit,

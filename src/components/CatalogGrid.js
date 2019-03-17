@@ -27,7 +27,7 @@ class AdvancedGridList extends Component {
     if (this.props.fetchingPosts) {
       return (
         <div className="loading">
-          <Loader type="Oval" color="#00bfff" height="150" width="100" />
+          <Loader type="Oval" color="#0a4e8a" height="120" width="80" />
         </div>
       )
     }
