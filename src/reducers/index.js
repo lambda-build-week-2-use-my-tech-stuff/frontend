@@ -85,7 +85,8 @@ const reducer = (state = initialState, action) => {
     case DELETE_POST_SUCCESS:
     return {
       ...state,
-      deletingPost: false
+      deletingPost: false,
+      posts: state.posts.filter(post => post._id !== action.payload._id)
     }
     case DELETE_POST_FAILURE:
     return {

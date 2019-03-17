@@ -19,12 +19,6 @@ class AdvancedGridList extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.deletingPost && !this.props.deletingPost && !this.props.error) {
-      this.props.getPosts();
-    }
-  }
-
   render() {
     const { classes, posts, searchedPosts } = this.props;
 
@@ -108,8 +102,7 @@ const mapStateToProps = state => ({
   searchedPosts: state.searchedPosts,
   searchInput: state.searchInput,
   fetchingPosts: state.fetchingPosts,
-  error: state.error,
-  deletingPost: state.deletingPost
+  error: state.error
 })
 
 AdvancedGridList.propTypes = {
