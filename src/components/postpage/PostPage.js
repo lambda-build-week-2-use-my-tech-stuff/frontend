@@ -9,8 +9,17 @@ import Fab from '@material-ui/core/Fab';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 class PostPage extends Component {
+  state = {
+    open: false
+  }
 
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
@@ -36,6 +45,14 @@ class PostPage extends Component {
     this.props.history.push('/')
   }
 
+  handleClickOpen = () => {
+    this.setState({ open: true})
+  }
+
+  handleClose = () => {
+    this.setState({ open: false})
+  }
+
   render() {
     const { classes, fetchingPost, post, error } = this.props;
     const { category, city, createdBy, description, postImage, postTitle, price, state, zip, _id } = this.props.post
@@ -57,7 +74,7 @@ class PostPage extends Component {
                 <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
                   <EditIcon></EditIcon>
                 </Fab>
-                <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
+                <Fab aria-label="Delete" className={classes.remove} onClick={this.handleClickOpen}>
                   <DeleteIcon />
                 </Fab>
               </>}
@@ -71,6 +88,26 @@ class PostPage extends Component {
             <img src={postImage} alt={postTitle} />
             <p>{description}</p>
           </article>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description">
+            <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete this post?"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Once you delete a post, it is gone forever.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                No, keep this post
+              </Button>
+              <Button onClick={() => this.deletePost(this.props.match.params.id)} color="primary" autoFocus>
+                Delete this post
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       )
     }
