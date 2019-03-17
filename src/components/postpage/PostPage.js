@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './PostPage.css';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
-import { getPost, deletePost } from '../../actions';
+import { getPost, deletePost, handleError } from '../../actions';
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
@@ -15,6 +15,9 @@ class PostPage extends Component {
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
       this.props.getPost(this.props.match.params.id);
+    }
+    else if (this.props.error && this.props.post._id === this.props.match.params.id) {
+      this.props.handleError()
     }
   }
 
@@ -114,4 +117,4 @@ const mapStateToProps = state => ({
 })
 
 const PostPageStyles = withStyles(styles)(PostPage);
-export default connect(mapStateToProps, { getPost, deletePost })(PostPageStyles);
+export default connect(mapStateToProps, { getPost, deletePost, handleError })(PostPageStyles);

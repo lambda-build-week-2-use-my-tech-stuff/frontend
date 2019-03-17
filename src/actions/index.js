@@ -175,3 +175,9 @@ export const PROFILE_POSTS = 'PROFILE_POSTS';
 export const filterProfile = userID => {
   return {type: PROFILE_POSTS, payload: userID}
 }
+
+export const ERROR_HANDLER = 'ERROR_HANDLER';
+
+export const handleError = () => {
+  return {type: ERROR_HANDLER}
+}
