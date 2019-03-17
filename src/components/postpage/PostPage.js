@@ -37,8 +37,16 @@ class PostPage extends Component {
   }
 
   render() {
-    const { classes, fetchingPost, post } = this.props;
+    const { classes, fetchingPost, post, error } = this.props;
     const { category, city, createdBy, description, postImage, postTitle, price, state, zip, _id } = this.props.post
+
+    if (error) {
+      return (
+        <div className="error">
+          <h3>{error}</h3>
+        </div>
+      )
+    }
 
      if (Object.keys(post).length !== 0 && !fetchingPost && _id === this.props.match.params.id) {
       return (
