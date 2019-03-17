@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
-import { getPosts } from '../actions';
+import { getPosts, handleError } from '../actions';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,6 +16,8 @@ class AdvancedGridList extends Component {
   componentDidMount() {
     if (this.props.posts.length === 0) {
       this.props.getPosts();
+    } else {
+      this.props.handleError();
     }
   }
 
@@ -109,4 +111,4 @@ AdvancedGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 const styledComponent = withStyles(styles)(AdvancedGridList);
-export default connect(mapStateToProps, { getPosts })(styledComponent)
+export default connect(mapStateToProps, { getPosts, handleError })(styledComponent)

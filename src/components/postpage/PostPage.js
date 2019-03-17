@@ -16,9 +16,6 @@ class PostPage extends Component {
     if (this.props.post._id !== this.props.match.params.id) {
       this.props.getPost(this.props.match.params.id);
     }
-    else if (this.props.error && this.props.post._id === this.props.match.params.id) {
-      this.props.handleError()
-    }
   }
 
   shouldComponentUpdate(nextProps) {
