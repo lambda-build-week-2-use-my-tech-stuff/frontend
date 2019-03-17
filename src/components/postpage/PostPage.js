@@ -15,7 +15,6 @@ class PostPage extends Component {
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
       this.props.getPost(this.props.match.params.id);
-      console.log('fetching post')
     }
   }
 
@@ -42,7 +41,6 @@ class PostPage extends Component {
     const { category, city, createdBy, description, postImage, postTitle, price, state, zip, _id } = this.props.post
 
      if (Object.keys(post).length !== 0 && !fetchingPost && _id === this.props.match.params.id) {
-      console.log('rendering post')
       return (
         <div className="postpage-container">
           <header className="postpage-header">
@@ -68,7 +66,6 @@ class PostPage extends Component {
         </div>
       )
     }
-      console.log('loader rendering')
       return (
         <div className="loading">
           <Loader type="Oval" color="#00bfff" height="150" width="100" />
