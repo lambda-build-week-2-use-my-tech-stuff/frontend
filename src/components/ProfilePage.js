@@ -12,21 +12,19 @@ import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
 class ProfilePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEditing: false,
-      user: {
-        email: null,
-        id: this.props.match.params.id,
-        profile: {
-          firstName: "",
-          lastName: "",
-          city: "",
-          state: "",
-          zip: "",
-          dob: "",
-        }
+
+  state = {
+    isEditing: false,
+    user: {
+      email: null,
+      id: this.props.match.params.id,
+      profile: {
+        firstName: "",
+        lastName: "",
+        city: "",
+        state: "",
+        zip: "",
+        dob: "",
       }
     }
   }
@@ -107,7 +105,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, profilePosts } = this.props;
     const { firstName, lastName, city, state, zip } = this.state.user.profile;
 
     if (this.props.fetchingPosts) {
@@ -121,21 +119,21 @@ class ProfilePage extends Component {
     return (
       <div className='profileContainer'>
         <div className='profilePageHeader' >
-            <h2>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Profile Page</h2>
-            <img />
+            <h2>{`${firstName} ${lastName}`}s Profile Page</h2>
+            <img alt={firstName} />
         </div>
         {/* onSubmit={this.editSubmitter} */}
         <form className='profilePage'  onSubmit={e => this.editProfile(e, this.state.user)} >
             {/* <input placeholder='Username/email' className='inputField' /> */}
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='firstName' placeholder='First Name' value={firstName} className='inputField' /> : <p>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='firstName' placeholder='First Name' value={firstName} className='inputField' /> : <p>{`${firstName} ${lastName}`}</p>}
             <br />
             {this.state.isEditing ? <TextField onChange={this.editHandler} name='lastName' placeholder='Last Name' value={lastName} className='inputField' /> : null}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='city' placeholder='City' value={city} className='inputField' /> : <p>{this.state.user.profile.city}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='city' placeholder='City' value={city} className='inputField' /> : <p>{city}</p>}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='state' placeholder='State' value={state} className='inputField' /> : <p>{this.state.user.profile.state}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='state' placeholder='State' value={state} className='inputField' /> : <p>{state}</p>}
             <br />
-            {this.state.isEditing ? <TextField onChange={this.editHandler} name='zip' placeholder='ZIP code' value={zip} className='inputField' /> : <p>{this.state.user.profile.zip}</p>}
+            {this.state.isEditing ? <TextField onChange={this.editHandler} name='zip' placeholder='ZIP code' value={zip} className='inputField' /> : <p>{zip}</p>}
             <br />
             {this.state.isEditing ? <TextField onChange={this.editHandler} name='dob' placeholder='D.O.B.' className='inputField' /> : <p>{this.state.user.profile.dob}</p>}
             <br />
@@ -154,14 +152,14 @@ class ProfilePage extends Component {
 
         {/* /////////////User's Posts */}
         <div className='profilePostHeader'>
-            <h2 className='userNameTitle'>{`${this.state.user.profile.firstName} ${this.state.user.profile.lastName}`}s Posts</h2>
+            <h2 className='userNameTitle'>{`${firstName} ${lastName}`}s Posts</h2>
               <Fab aria-label="Add" size="large" color="primary" className={classes.add} component={Link} to="/postform">
                 <AddIcon />
               </Fab>
         </div>
 
         <div className='profilePosts' >
-            {this.props.profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} image={post.postImage} id={post._id} />)}
+            {profilePosts.map(post => <MediaCard key={post._id} title={post.postTitle} description={post.description} image={post.postImage} id={post._id} />)}
         </div>
        </div>
     )
@@ -203,17 +201,6 @@ const styles = theme => ({
   },
   menu: {
     width: 200,
-  },
-   button: {
-    margin: theme.spacing.unit,
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
   },
 });
 

@@ -16,12 +16,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button'
 import FormDialog from './FormDialog(login)';
 import { searchBar, getPosts, checkSignIn } from '../actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 
 class PrimarySearchAppBar extends React.Component {
   state = {

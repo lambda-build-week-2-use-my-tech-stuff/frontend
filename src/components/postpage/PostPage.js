@@ -11,33 +11,24 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
 class PostPage extends Component {
-  state = {
-    post: {
-      name: '',
-      price: '',
-      category: '',
-      location: '',
-      description: '',
-      postImage: '',
-      createdBy: ''
-    }
-  }
 
   componentDidMount() {
     if (this.props.post._id !== this.props.match.params.id) {
       this.props.getPost(this.props.match.params.id);
     }
-    else {
-      this.setState({ post: {
-        name: this.props.post.postTitle,
-        price: this.props.post.price,
-        category: this.props.post.category,
-        description: this.props.post.description,
-        location: `${this.props.post.city}, ${this.props.post.state} ${this.props.post.zip}`,
-        postImage: this.props.post.postImage,
-        createdBy: this.props.post.createdBy
-      }})
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (!this.props.fetchingPost && nextProps.fetchingPost && this.props.post._id !== this.props.match.params.id) {
+      return false
     }
+    if (!this.props.fetchingPost && nextProps.fetchingPost && Object.keys(this.props.post).length !== 0) {
+      return true
+    }
+    else if (!this.props.fetchingPost && nextProps.fetchingPost) {
+      return false
+    }
+      return true
   }
 
   deletePost = id => {
@@ -45,56 +36,41 @@ class PostPage extends Component {
     this.props.history.push('/')
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.post !== this.props.post) {
-      const post = this.props.post;
-      this.setState({ post: {
-        name: post.postTitle,
-        price: post.price,
-        category: post.category,
-        description: post.description,
-        postImage: post.postImage,
-        location: `${post.city}, ${post.state} ${post.zip}`,
-        createdBy: post.createdBy
-      } })
-    }
-  }
-
   render() {
-    const { classes } = this.props;
+    const { classes, fetchingPost, post } = this.props;
+    const { category, city, createdBy, description, postImage, postTitle, price, state, zip, _id } = this.props.post
 
-    if (this.props.fetchingPost) {
+     if (Object.keys(post).length !== 0 && !fetchingPost && _id === this.props.match.params.id) {
+      return (
+        <div className="postpage-container">
+          <header className="postpage-header">
+            <div className="title-container">
+              {createdBy === localStorage.getItem('userID') && <>
+                <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
+                  <EditIcon></EditIcon>
+                </Fab>
+                <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
+                  <DeleteIcon />
+                </Fab>
+              </>}
+              <h2>{postTitle}</h2>
+            </div>
+            <h3>${price}</h3>
+            <h3>{category}</h3>
+            <h4>{`${city}, ${state} ${zip}`}</h4>
+          </header>
+          <article className="postpage-content">
+            <img src={postImage} alt={postTitle} />
+            <p>{description}</p>
+          </article>
+        </div>
+      )
+    }
       return (
         <div className="loading">
           <Loader type="Oval" color="#00bfff" height="150" width="100" />
         </div>
       )
-    }
-
-    return (
-      <div className="postpage-container">
-        <header className="postpage-header">
-          <div className="title-container">
-            {this.state.post.createdBy === localStorage.getItem('userID') && <>
-              <Fab aria-label="Edit" className={classes.edit} component={Link} to='/editform'>
-                <EditIcon></EditIcon>
-              </Fab>
-              <Fab aria-label="Delete" className={classes.remove} onClick={() => this.deletePost(this.props.match.params.id)}>
-                <DeleteIcon />
-              </Fab>
-            </>}
-            <h2>{this.state.post.name}</h2>
-          </div>
-          <h3>${this.state.post.price}</h3>
-          <h3>{this.state.post.category}</h3>
-          <h4>{this.state.post.location}</h4>
-        </header>
-        <article className="postpage-content">
-          <img src={this.state.post.postImage} alt={this.state.post.name} />
-          <p>{this.state.post.description}</p>
-        </article>
-      </div>
-    )
   }
 }
 
