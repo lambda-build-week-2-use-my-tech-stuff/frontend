@@ -103,7 +103,13 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       editingPost: false,
-      post: action.payload
+      post: action.payload,
+      posts: state.posts.map(post => {
+        if (post._id === action.payload._id) {
+          return action.payload
+        }
+        return post
+      })
     }
     case EDIT_POST_FAILURE:
     return {
