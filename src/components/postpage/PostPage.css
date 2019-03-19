@@ -43,3 +43,21 @@ h1 {
   width: 90%;
   margin: 0 auto;
 }
+
+.error {
+  width: 500px;
+  height: 300px;
+  border: 2px solid red;
+  background-color: #ffb4b4;
+  color: #b50000;
+  border-radius: 2px;
+  margin: 40px auto 20px auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.error h3 {
+  font-size: 2rem;
+}

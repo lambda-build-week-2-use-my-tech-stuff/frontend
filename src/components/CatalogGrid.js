@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
-import { getPosts } from '../actions';
+import { getPosts, handleError } from '../actions';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,12 +16,8 @@ class AdvancedGridList extends Component {
   componentDidMount() {
     if (this.props.posts.length === 0) {
       this.props.getPosts();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.deletingPost && !this.props.deletingPost && !this.props.error) {
-      this.props.getPosts();
+    } else {
+      this.props.handleError();
     }
   }
 
@@ -31,7 +27,7 @@ class AdvancedGridList extends Component {
     if (this.props.fetchingPosts) {
       return (
         <div className="loading">
-          <Loader type="Oval" color="#00bfff" height="150" width="100" />
+          <Loader type="Oval" color="#0a4e8a" height="120" width="80" />
         </div>
       )
     }
@@ -108,12 +104,11 @@ const mapStateToProps = state => ({
   searchedPosts: state.searchedPosts,
   searchInput: state.searchInput,
   fetchingPosts: state.fetchingPosts,
-  error: state.error,
-  deletingPost: state.deletingPost
+  error: state.error
 })
 
 AdvancedGridList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 const styledComponent = withStyles(styles)(AdvancedGridList);
-export default connect(mapStateToProps, { getPosts })(styledComponent)
+export default connect(mapStateToProps, { getPosts, handleError })(styledComponent)
