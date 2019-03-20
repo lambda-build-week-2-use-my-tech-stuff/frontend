@@ -1,83 +1,137 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { signUp } from '../actions';
-import TextField from '@material-ui/core/TextField';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signUp } from "../actions";
+import TextField from "@material-ui/core/TextField";
+import { fade } from "@material-ui/core/styles/colorManipulator";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 class SignUp extends Component {
-    state = {
-        userInfo: {
-          "email": "",
-          "password": ""
-        }
-      }
-
-    changeHandler = e => {
-      e.preventDefault();
-      this.setState({
-        userInfo: {
-          ...this.state.userInfo,
-          [e.target.name]: e.target.value
-        }
-      })
-    };
-
-    submitDataHandler = (e, userInfo) => {
-      e.preventDefault();
-      this.props.signUp(userInfo);
-      alert('Successfully Signed Up! You will now be Logged In');
-      this.props.history.push('/');
+  state = {
+    userInfo: {
+      email: "",
+      password: ""
     }
+  };
+
+  changeHandler = e => {
+    e.preventDefault();
+    this.setState({
+      userInfo: {
+        ...this.state.userInfo,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  submitDataHandler = (e, userInfo) => {
+    e.preventDefault();
+    this.props.signUp(userInfo);
+    this.props.handleSignUpClose();
+    this.setState({
+      userInfo: {
+        email: "",
+        password: ""
+      }
+    });
+  };
   render() {
     return (
-      <div className='login'>
-        <form className='loginForm' onSubmit={e => this.submitDataHandler(e, this.state.userInfo)} >
-            <h2 className='logo'>mystuff</h2>
-            <TextField className='loginInput' name="email" type='text' placeholder='Email' onChange={this.changeHandler} value={this.state.userInfo.email} required />
-            <TextField className='loginInput' name="password" value={this.state.userInfo.password} type='password' placeholder='Password' onChange={this.changeHandler} required />
-            <br />
-            <button className='loginBtn'>Sign Up</button>
-            <br/>
-            <p className='p'>Already Have an Account?</p>
-            <br />
-            <Link to="/signin">
-              <p className='signUP'>Log In</p>
-            </Link>
+      <Dialog
+        open={this.props.signUpOpen}
+        onClose={this.props.handleSignUpClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title" className="logo">
+          mystuff
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here.
+            We will send updates occasionally.
+          </DialogContentText>
+        </DialogContent>
+        <form onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              fullWidth
+              name="email"
+              label="Email"
+              onChange={this.changeHandler}
+              value={this.state.userInfo.email}
+              required
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              fullWidth
+              className="loginInput"
+              name="password"
+              value={this.state.userInfo.password}
+              type="password"
+              label="Password"
+              onChange={this.changeHandler}
+              required
+            />
+
+            <DialogContentText>
+              Already Have An Account?
+              <Button onClick={this.props.handleSignInOpen} color="primary">
+                Sign In
+              </Button>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button color="primary" type="submit">
+              Sign Up
+            </Button>
+            <Button onClick={this.props.handleSignUpClose} color="primary">
+              Cancel
+            </Button>
+          </DialogActions>
         </form>
-      </div>
-    )
+      </Dialog>
+    );
   }
 }
 
 const styles = theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   dense: {
-    marginTop: 16,
+    marginTop: 16
   },
   menu: {
-    width: 200,
+    width: 200
   },
-   button: {
-    margin: theme.spacing.unit,
+  button: {
+    margin: theme.spacing.unit
   },
   edit: {
     margin: theme.spacing.unit,
-    backgroundColor: '#ffa500',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: fade('#ffa500', .75),
-    },
-  },
+    backgroundColor: "#ffa500",
+    color: "white",
+    "&:hover": {
+      backgroundColor: fade("#ffa500", 0.75)
+    }
+  }
 });
 
 const SignUpFormStyles = withStyles(styles)(SignUp);
-export default connect(null, { signUp })(SignUpFormStyles);
+export default connect(
+  null,
+  { signUp }
+)(SignUpFormStyles);

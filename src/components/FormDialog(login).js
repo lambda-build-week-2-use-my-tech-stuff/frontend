@@ -1,102 +1,85 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { checkSignIn } from '../actions';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { checkSignIn } from "../actions";
+import Login from "../authentication/Login";
+import SignUp from "../authentication/SignUp";
+import Button from "@material-ui/core/Button";
 
 class FormDialog extends React.Component {
   state = {
-    open: false,
+    signInOpen: false,
+    signUpOpen: false
   };
 
   componentDidMount() {
     this.props.checkSignIn();
   }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  handleSignInOpen = () => {
+    this.setState({ signInOpen: true, signUpOpen: false });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  handleSignInClose = () => {
+    this.setState({ signInOpen: false });
+  };
+
+  handleSignUpOpen = () => {
+    this.setState({ signUpOpen: true, signInOpen: false });
+  };
+
+  handleSignUpClose = () => {
+    this.setState({ signUpOpen: false });
   };
 
   logOut = () => {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('userID');
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("userID");
     this.props.checkSignIn();
-    this.props.history.push("/")
-  }
+    this.props.history.push("/");
+  };
 
   signIn = () => {
-    this.props.history.push("/signin")
-  }
+    this.props.history.push("/signin");
+  };
 
   signUp = () => {
-    this.props.history.push("/signup")
-  }
+    this.props.history.push("/signup");
+  };
 
   render() {
     return (
-      <div className='signUpBtn'>
-        {this.props.signedIn ? <Button variant="outlined" color="inherit" onClick={this.logOut}>
-          Log Out
-        </Button> :
-        <>
-          <Button variant="outlined"  color="inherit" onClick={this.signIn}>
-            Log In
+      <div className="signUpBtn">
+        {this.props.signedIn ? (
+          <Button variant="outlined" color="inherit" onClick={this.logOut}>
+            Log Out
           </Button>
-          {/* <Button variant="outlined" color="inherit" onClick={this.signUp}>
-            Sign Up
-          </Button> */}
-
-        </> }
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address here. We will send
-              updates occasionally.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Password"
-              type="Password"
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-              Sign Up
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
+        ) : (
+          <>
+            <Button
+              variant="outlined"
+              color="inherit"
+              onClick={this.handleSignInOpen}
+            >
               Log In
             </Button>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
+            {/* <Button variant="outlined" color="inherit" onClick={this.signUp}>
+            Sign Up
+          </Button> */}
+          </>
+        )}
+        <Login
+          handleSignInClose={this.handleSignInClose}
+          handleSignInOpen={this.handleSignInOpen}
+          signInOpen={this.state.signInOpen}
+          handleSignUpOpen={this.handleSignUpOpen}
+        />
+        <SignUp
+          handleSignUpClose={this.handleSignUpClose}
+          handleSignUpOpen={this.handleSignUpOpen}
+          signUpOpen={this.state.signUpOpen}
+          handleSignInOpen={this.handleSignInOpen}
+        />
       </div>
     );
   }
@@ -104,7 +87,10 @@ class FormDialog extends React.Component {
 
 const mapStateToProps = state => ({
   signedIn: state.signedIn
-})
+});
 
 const FormDialogRouter = withRouter(FormDialog);
-export default connect(mapStateToProps, { checkSignIn })(FormDialogRouter);
+export default connect(
+  mapStateToProps,
+  { checkSignIn }
+)(FormDialogRouter);
