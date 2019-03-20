@@ -2,15 +2,7 @@
   margin: 40px auto;
 }
 
-.postpage-header {
-  margin-bottom: 40px;
-}
-
-.title-container {
-  justify-content: center;
-}
-
-h1 {
+.postpage-container h1 {
   font-size: 4rem;
 }
 
@@ -21,12 +13,10 @@ h1 {
 
 .postpage-container h3 {
   font-size: 2rem;
-  margin: 20px auto;
 }
 
 .postpage-container h4 {
   font-size: 1.6rem;
-  margin: 10px auto;
 }
 
 .postpage-container p {
