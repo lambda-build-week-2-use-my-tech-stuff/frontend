@@ -106,27 +106,25 @@ class PostPage extends Component {
           <Card className={classes.card}>
             <CardHeader
               action={
-                <IconButton>
-                  {createdBy === localStorage.getItem("userID") && (
-                    <>
-                      <Fab
-                        aria-label="Edit"
-                        className={classes.edit}
-                        component={Link}
-                        to="/editform"
-                      >
-                        <EditIcon />
-                      </Fab>
-                      <Fab
-                        aria-label="Delete"
-                        className={classes.remove}
-                        onClick={this.handleClickOpen}
-                      >
-                        <DeleteIcon />
-                      </Fab>
-                    </>
-                  )}
-                </IconButton>
+                createdBy === localStorage.getItem("userID") && (
+                  <>
+                    <Fab
+                      aria-label="Edit"
+                      className={classes.edit}
+                      component={Link}
+                      to="/editform"
+                    >
+                      <EditIcon />
+                    </Fab>
+                    <Fab
+                      aria-label="Delete"
+                      className={classes.remove}
+                      onClick={this.handleClickOpen}
+                    >
+                      <DeleteIcon />
+                    </Fab>
+                  </>
+                )
               }
               title={postTitle}
               subheader={`${city}, ${state} ${zip}`}
