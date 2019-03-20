@@ -28,6 +28,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
 
 class PostPage extends Component {
   state = {
@@ -154,6 +155,8 @@ class PostPage extends Component {
             onClose={this.handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            TransitionComponent={Transition}
+            keepMounted
           >
             <DialogTitle id="alert-dialog-title">
               {"Are you sure you want to delete this post?"}
@@ -191,6 +194,10 @@ class PostPage extends Component {
   }
 }
 
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
 const styles = theme => ({
   fab: {
     margin: theme.spacing.unit
@@ -225,7 +232,7 @@ const styles = theme => ({
     display: "flex"
   },
   media: {
-    width: 800
+    maxWidth: 800
   }
 });
 
