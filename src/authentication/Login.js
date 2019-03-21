@@ -3,7 +3,6 @@ import "./login.css";
 import { connect } from "react-redux";
 import { toggleSignedIn } from "../actions";
 import TextField from "@material-ui/core/TextField";
-import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -48,19 +47,15 @@ class Login extends Component {
         open={this.props.signInOpen}
         onClose={this.props.handleSignInClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="s"
       >
-        <DialogTitle className="logo">mystuff</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-        </DialogContent>
+        <DialogTitle className="logo" id="form-dialog-title">
+          mystuff
+        </DialogTitle>
         <form onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
           <DialogContent>
             <TextField
               autoFocus
-              className="loginInput"
               name="email"
               label="Email"
               onChange={this.changeHandler}
@@ -69,7 +64,6 @@ class Login extends Component {
               fullWidth
             />
             <TextField
-              className="loginInput"
               name="password"
               type="password"
               label="Password"
@@ -88,11 +82,14 @@ class Login extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button type="submit" color="primary">
+            <Button
+              type="submit"
+              size="large"
+              color="primary"
+              variant="contained"
+              fullWidth
+            >
               Sign In
-            </Button>
-            <Button onClick={this.props.handleSignInClose} color="primary">
-              Cancel
             </Button>
           </DialogActions>
         </form>
@@ -118,14 +115,6 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#ffa500",
-    color: "white",
-    "&:hover": {
-      backgroundColor: fade("#ffa500", 0.75)
-    }
   }
 });
 

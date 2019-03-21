@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signUp } from "../actions";
 import TextField from "@material-ui/core/TextField";
-import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -46,16 +45,11 @@ class SignUp extends Component {
         open={this.props.signUpOpen}
         onClose={this.props.handleSignUpClose}
         aria-labelledby="form-dialog-title"
+        maxWidth="s"
       >
         <DialogTitle id="form-dialog-title" className="logo">
           mystuff
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-        </DialogContent>
         <form onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
           <DialogContent>
             <TextField
@@ -72,7 +66,6 @@ class SignUp extends Component {
               autoFocus
               margin="dense"
               fullWidth
-              className="loginInput"
               name="password"
               value={this.state.userInfo.password}
               type="password"
@@ -89,11 +82,14 @@ class SignUp extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button color="primary" type="submit">
+            <Button
+              color="primary"
+              type="submit"
+              variant="contained"
+              size="large"
+              fullWidth
+            >
               Sign Up
-            </Button>
-            <Button onClick={this.props.handleSignUpClose} color="primary">
-              Cancel
             </Button>
           </DialogActions>
         </form>
@@ -119,14 +115,6 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit
-  },
-  edit: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#ffa500",
-    color: "white",
-    "&:hover": {
-      backgroundColor: fade("#ffa500", 0.75)
-    }
   }
 });
 
