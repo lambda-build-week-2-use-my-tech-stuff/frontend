@@ -1,4 +1,4 @@
-.PostForm form, .EditForm form {
+.EditForm form {
   width: 800px;
   padding: 1%;
   margin: 30px auto;
@@ -8,4 +8,8 @@
   flex-wrap: wrap;
   align-content: space-around;
   justify-content: center;
+}
+
+.PostForm {
+  margin: 60px auto;
 }

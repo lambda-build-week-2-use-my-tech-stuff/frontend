@@ -47,7 +47,7 @@ class Login extends Component {
         open={this.props.signInOpen}
         onClose={this.props.handleSignInClose}
         aria-labelledby="form-dialog-title"
-        maxWidth="s"
+        maxWidth="sm"
       >
         <DialogTitle className="logo" id="form-dialog-title">
           mystuff
