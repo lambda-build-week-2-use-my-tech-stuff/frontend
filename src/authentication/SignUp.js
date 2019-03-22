@@ -40,6 +40,7 @@ class SignUp extends Component {
     });
   };
   render() {
+    const { classes } = this.props;
     return (
       <Dialog
         open={this.props.signUpOpen}
@@ -54,17 +55,19 @@ class SignUp extends Component {
           <DialogContent>
             <TextField
               autoFocus
-              margin="dense"
+              margin="normal"
               fullWidth
               name="email"
               label="Email"
               onChange={this.changeHandler}
               value={this.state.userInfo.email}
               required
+              variant="outlined"
+              className={classes.textField}
             />
             <TextField
               autoFocus
-              margin="dense"
+              margin="normal"
               fullWidth
               name="password"
               value={this.state.userInfo.password}
@@ -72,6 +75,8 @@ class SignUp extends Component {
               label="Password"
               onChange={this.changeHandler}
               required
+              variant="outlined"
+              className={classes.textField}
             />
 
             <DialogContentText>
@@ -99,22 +104,9 @@ class SignUp extends Component {
 }
 
 const styles = theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  dense: {
-    marginTop: 16
-  },
-  menu: {
-    width: 200
-  },
-  button: {
-    margin: theme.spacing.unit
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit
   }
 });
 
