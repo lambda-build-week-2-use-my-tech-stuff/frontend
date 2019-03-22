@@ -49,7 +49,7 @@ class SignUp extends Component {
         maxWidth="sm"
       >
         <DialogTitle id="form-dialog-title" className="logo">
-          mystuff
+          <span className="title">mystuff</span>
         </DialogTitle>
         <form onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
           <DialogContent>

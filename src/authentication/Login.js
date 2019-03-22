@@ -50,8 +50,8 @@ class Login extends Component {
         aria-labelledby="form-dialog-title"
         maxWidth="sm"
       >
-        <DialogTitle className="logo" id="form-dialog-title">
-          mystuff
+        <DialogTitle id="form-dialog-title" className="logo">
+          <span className="title">mystuff</span>
         </DialogTitle>
         <form onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
           <DialogContent>
