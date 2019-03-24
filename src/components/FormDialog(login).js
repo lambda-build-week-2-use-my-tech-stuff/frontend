@@ -86,7 +86,7 @@ class FormDialog extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  signedIn: state.signedIn
+  signedIn: state.signInReducer.signedIn
 });
 
 const FormDialogRouter = withRouter(FormDialog);
