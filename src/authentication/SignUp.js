@@ -54,7 +54,6 @@ class SignUp extends Component {
         <form onSubmit={e => this.submitDataHandler(e, this.state.userInfo)}>
           <DialogContent>
             <TextField
-              autoFocus
               margin="normal"
               fullWidth
               name="email"
@@ -66,7 +65,6 @@ class SignUp extends Component {
               className={classes.textField}
             />
             <TextField
-              autoFocus
               margin="normal"
               fullWidth
               name="password"
