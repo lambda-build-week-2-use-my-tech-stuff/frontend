@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Loader from "react-loader-spinner";
 import MediaCard from "./MediaCard";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { getProfile, editProfile, getPosts, filterProfile } from "../actions";
 import { connect } from "react-redux";
@@ -128,18 +129,18 @@ class ProfilePage extends Component {
       <div className="profileContainer">
         <div className="profilePageHeader">
           {firstName.length > 0 ? (
-            <h2>{`${firstName}`}s Profile Page</h2>
+            <Typography component="h2">
+              {`${firstName}`}s Profile Page
+            </Typography>
           ) : (
-            <h2>Your Profile Page</h2>
+            <Typography component="h2">Your Profile Page</Typography>
           )}
-          <img alt={firstName} />
+          {/* <img alt={firstName} /> */}
         </div>
-        {/* onSubmit={this.editSubmitter} */}
         <form
           className="profilePage"
           onSubmit={e => this.editProfile(e, this.state.user)}
         >
-          {/* <input placeholder='Username/email' className='inputField' /> */}
           {this.state.isEditing ? (
             <TextField
               onChange={this.editHandler}
@@ -149,9 +150,9 @@ class ProfilePage extends Component {
               className="inputField"
             />
           ) : firstName.length > 0 && lastName.length > 0 ? (
-            <p>{`${firstName} ${lastName}`}</p>
+            <Typography component="p">{`${firstName} ${lastName}`}</Typography>
           ) : (
-            <p>{`Name Here`}</p>
+            <Typography component="p">{`Name Here`}</Typography>
           )}
           <br />
           {this.state.isEditing ? (
@@ -173,9 +174,9 @@ class ProfilePage extends Component {
               className="inputField"
             />
           ) : city.length > 0 ? (
-            <p>{city}</p>
+            <Typography component="p">{city}</Typography>
           ) : (
-            <p>City Here</p>
+            <Typography component="p">City Here</Typography>
           )}
           <br />
           {this.state.isEditing ? (
@@ -187,9 +188,9 @@ class ProfilePage extends Component {
               className="inputField"
             />
           ) : state.length > 0 ? (
-            <p>{state}</p>
+            <Typography component="p">{state}</Typography>
           ) : (
-            <p>State Here</p>
+            <Typography component="p">State Here</Typography>
           )}
           <br />
           {this.state.isEditing ? (
@@ -201,9 +202,9 @@ class ProfilePage extends Component {
               className="inputField"
             />
           ) : zip.length > 0 ? (
-            <p>{zip}</p>
+            <Typography component="p">{zip}</Typography>
           ) : (
-            <p>Zip Here</p>
+            <Typography component="p">Zip Here</Typography>
           )}
           <br />
           {this.state.isEditing ? (
@@ -214,7 +215,7 @@ class ProfilePage extends Component {
               className="inputField"
             />
           ) : (
-            <p>{this.state.user.profile.dob}</p>
+            <Typography component="p">{this.state.user.profile.dob}</Typography>
           )}
           <br />
           {this.state.isEditing && (
@@ -251,9 +252,9 @@ class ProfilePage extends Component {
         {/* /////////////User's Posts */}
         <div className="profilePostHeader">
           {firstName.length > 0 ? (
-            <h2 className="userNameTitle">{`${firstName}`}s Posts</h2>
+            <Typography component="h2">{`${firstName}`}s Posts</Typography>
           ) : (
-            <h2>Your Posts</h2>
+            <Typography component="h2">Your Posts</Typography>
           )}
           <Fab
             aria-label="Add"
