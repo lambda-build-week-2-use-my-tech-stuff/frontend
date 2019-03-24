@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
 
 .App {
   text-align: center;
@@ -6,22 +6,22 @@
   margin: auto;
 }
 
-.catalog{
+.catalog {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
 }
 
-.signUpBtn{
+.signUpBtn {
   margin-right: 25px;
 }
 
-.rightNav{
+.rightNav {
   display: flex;
   align-items: center;
 }
 
-.profilePage{
+.profilePage {
   border: 3px solid #0087ea;
   display: flex;
   flex-direction: column;
@@ -30,85 +30,85 @@
   margin: auto;
   border-radius: 8px;
   margin-bottom: 5%;
-  }
+}
 
-  .inputField{
-    text-align: center;
-    margin: 1% 0;
-    border-radius: 8px;
-    height: 35px;
-  }
+.inputField {
+  text-align: center;
+  margin: 1% 0;
+  border-radius: 8px;
+  height: 35px;
+}
 
-  .profileContainer{
-    margin: 2%;
-  }
+.profileContainer {
+  margin: 2%;
+}
 
-  .profileContainer h2{
-    margin-bottom: 1%;
-  }
+.profileContainer h2 {
+  margin-bottom: 1%;
+}
 
-  .updateBtn{
-    text-align: center;
-    border-radius: 8px;
-    height: 30px;
-    width: 125px;
-    align-self: center;
-    margin-top: 3%;
-  }
+.updateBtn {
+  text-align: center;
+  border-radius: 8px;
+  height: 30px;
+  width: 125px;
+  align-self: center;
+  margin-top: 3%;
+}
 
-  .profilePosts{
-    margin: 0 auto;
-    justify-content: space-around;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+.profilePosts {
+  margin: 0 auto;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
-  .userNameTitle{
-    text-decoration: none;
-  }
+.userNameTitle {
+  text-decoration: none;
+}
 
-  .profilePageHeader{
-    display: flex;
-    max-width: 450px;
-    margin: 0 auto;
-  }
+.profilePageHeader {
+  display: flex;
+  max-width: 450px;
+  margin: 0 auto;
+}
 
-  .techLink{
-    color: white;
-    text-decoration: none;
-  }
+.techLink {
+  color: white;
+  text-decoration: none;
+}
 
-  .profileLink{
-    color: #2c419b;
-    text-decoration: none;
-    font-weight: bold;
-  }
+.profileLink {
+  color: #2c419b;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-  .appBarStyle{
-    color: #0087ea;
-  }
+.appBarStyle {
+  color: #0087ea;
+}
 
-  .btnOrange{
-    color:#ffa500;
-  }
+.btnOrange {
+  color: #ffa500;
+}
 
-  .profilePostHeader{
-    margin-bottom: 1.5%;
-  }
+.profilePostHeader {
+  margin-bottom: 1.5%;
+}
 
-  .logoLink{
-    font-family: 'Pacifico', cursive;
-    font-size: 1.25rem;
-  }
+.logoLink {
+  font-family: "Pacifico", cursive;
+  font-size: 1.25rem;
+}
 
-  /* .btnContainer{
+/* .btnContainer{
     width: 210px;
     display: flex;
     justify-content: space-between;
   } */
 
-  /* .aTag{
+/* .aTag{
     color: #2c419b;
     text-decoration: none;
     font-weight: bold;
