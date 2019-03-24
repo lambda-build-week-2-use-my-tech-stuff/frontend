@@ -16,7 +16,7 @@ class AdvancedGridList extends Component {
   componentDidMount() {
     if (this.props.posts.length === 0) {
       this.props.getPosts();
-    } else {
+    } else if (this.props.error !== null) {
       this.props.handleError();
     }
   }

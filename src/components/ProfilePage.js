@@ -114,10 +114,10 @@ class ProfilePage extends Component {
   };
 
   render() {
-    const { classes, profilePosts } = this.props;
+    const { classes, profilePosts, fetchingProfile } = this.props;
     const { firstName, lastName, city, state, zip } = this.state.user.profile;
 
-    if (this.props.fetchingPosts) {
+    if (fetchingProfile) {
       return (
         <div className="loading">
           <Loader type="Oval" color="#0a4e8a" height="120" width="80" />
@@ -285,12 +285,6 @@ class ProfilePage extends Component {
 }
 
 const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: "none"
-  },
   add: {
     margin: theme.spacing.unit,
     color: "white",
@@ -305,20 +299,6 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: fade("#ffa500", 0.75)
     }
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  dense: {
-    marginTop: 16
-  },
-  menu: {
-    width: 200
   }
 });
 
