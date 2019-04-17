@@ -30,7 +30,14 @@ class SignUp extends Component {
 
   submitDataHandler = (e, userInfo) => {
     e.preventDefault();
-    this.props.signUp(userInfo);
+    this.props
+      .signUp(userInfo)
+      .then(res => {
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
     this.props.handleSignUpClose();
     this.setState({
       userInfo: {

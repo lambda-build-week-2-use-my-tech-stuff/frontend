@@ -31,7 +31,14 @@ class Login extends Component {
 
   submitDataHandler = (e, userInfo) => {
     e.preventDefault();
-    this.props.toggleSignedIn(userInfo);
+    this.props
+      .toggleSignedIn(userInfo)
+      .then(res => {
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
     this.props.handleSignInClose();
     this.setState({
       userInfo: {
