@@ -22,12 +22,20 @@ class FormDialog extends React.Component {
       this.props.location.pathname === "/login" ||
       this.props.location.pathname === "/signin"
     ) {
-      this.handleSignInOpen();
+      if (!localStorage.getItem("jwt")) {
+        this.handleSignInOpen();
+      } else {
+        this.props.history.push("/");
+      }
     } else if (
       this.props.location.pathname === "/signup" ||
       this.props.location.pathname === "/register"
     ) {
-      this.handleSignUpOpen();
+      if (!localStorage.getItem("jwt")) {
+        this.handleSignUpOpen();
+      } else {
+        this.props.history.push("/");
+      }
     }
   };
 
