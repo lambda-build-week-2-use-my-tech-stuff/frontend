@@ -37,13 +37,9 @@ class ProfilePage extends Component {
         this.setState({
           user: {
             ...this.state.user,
+            email: this.props.currentProfile.email,
             profile: {
-              firstName: this.props.currentProfile.profile.firstName,
-              lastName: this.props.currentProfile.profile.lastName,
-              city: this.props.currentProfile.profile.city,
-              state: this.props.currentProfile.profile.state,
-              zip: this.props.currentProfile.profile.zip,
-              dob: this.props.currentProfile.profile.dob
+              ...this.props.currentProfile.profile
             }
           }
         });
@@ -114,10 +110,15 @@ class ProfilePage extends Component {
   };
 
   render() {
-    const { classes, profilePosts } = this.props;
+    const {
+      classes,
+      profilePosts,
+      fetchingProfile,
+      editingProfile
+    } = this.props;
     const { firstName, lastName, city, state, zip } = this.state.user.profile;
 
-    if (this.props.fetchingPosts) {
+    if (fetchingProfile || editingProfile) {
       return (
         <div className="loading">
           <Loader type="Oval" color="#0a4e8a" height="120" width="80" />
@@ -285,12 +286,6 @@ class ProfilePage extends Component {
 }
 
 const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: "none"
-  },
   add: {
     margin: theme.spacing.unit,
     color: "white",
@@ -305,30 +300,17 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: fade("#ffa500", 0.75)
     }
-  },
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  dense: {
-    marginTop: 16
-  },
-  menu: {
-    width: 200
   }
 });
 
 const mapStateToProps = state => ({
-  currentProfile: state.currentProfile,
-  error: state.error,
-  posts: state.posts,
-  fetchingProfile: state.fetchingProfile,
-  profilePosts: state.profilePosts,
-  fetchingPosts: state.fetchingPosts
+  currentProfile: state.profilesReducer.currentProfile,
+  error: state.profilesReducer.error,
+  posts: state.postsReducer.posts,
+  fetchingProfile: state.profilesReducer.fetchingProfile,
+  editingProfile: state.profilesReducer.editingProfile,
+  profilePosts: state.postsReducer.profilePosts,
+  fetchingPosts: state.postsReducer.fetchingPosts
 });
 
 const ProfilePageStyles = withStyles(styles)(ProfilePage);

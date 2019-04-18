@@ -14,7 +14,22 @@ class FormDialog extends React.Component {
 
   componentDidMount() {
     this.props.checkSignIn();
+    this.checkPathName();
   }
+
+  checkPathName = () => {
+    if (
+      this.props.location.pathname === "/login" ||
+      this.props.location.pathname === "/signin"
+    ) {
+      this.handleSignInOpen();
+    } else if (
+      this.props.location.pathname === "/signup" ||
+      this.props.location.pathname === "/register"
+    ) {
+      this.handleSignUpOpen();
+    }
+  };
 
   handleSignInOpen = () => {
     this.setState({ signInOpen: true, signUpOpen: false });
@@ -73,12 +88,14 @@ class FormDialog extends React.Component {
           handleSignInOpen={this.handleSignInOpen}
           signInOpen={this.state.signInOpen}
           handleSignUpOpen={this.handleSignUpOpen}
+          history={this.props.history}
         />
         <SignUp
           handleSignUpClose={this.handleSignUpClose}
           handleSignUpOpen={this.handleSignUpOpen}
           signUpOpen={this.state.signUpOpen}
           handleSignInOpen={this.handleSignInOpen}
+          history={this.props.history}
         />
       </div>
     );
@@ -86,7 +103,7 @@ class FormDialog extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  signedIn: state.signedIn
+  signedIn: state.signInReducer.signedIn
 });
 
 const FormDialogRouter = withRouter(FormDialog);

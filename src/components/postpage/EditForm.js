@@ -178,7 +178,7 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.postsReducer.post
 });
 
 const EditFormStyles = withStyles(styles)(EditForm);

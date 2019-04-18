@@ -271,7 +271,7 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  signedIn: state.signedIn
+  signedIn: state.signInReducer.signedIn
 });
 
 PrimarySearchAppBar.propTypes = {

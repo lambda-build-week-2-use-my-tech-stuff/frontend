@@ -233,9 +233,9 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => ({
-  post: state.post,
-  fetchingPost: state.fetchingPost,
-  error: state.error
+  post: state.postsReducer.post,
+  fetchingPost: state.postsReducer.fetchingPost,
+  error: state.postsReducer.error
 });
 
 const PostPageStyles = withStyles(styles)(PostPage);
