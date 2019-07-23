@@ -1,4 +1,4 @@
-[Deployment Link](https://angry-dubinsky-d707fa.netlify.com/)
+[Deployment Link](https://bw2-techstuff.netlify.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
